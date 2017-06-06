@@ -1,0 +1,7 @@
+purchase_platform_home:
+    path:      /
+    defaults: { _controller: PurchasePlatformBundle:Ticketing:index }
+    
+purchase_platform_view:
+    path:      /ticketing/
+    defaults: { _controller: PurchasePlatformBundle:Ticketing:view }
