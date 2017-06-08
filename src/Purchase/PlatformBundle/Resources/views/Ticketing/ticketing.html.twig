@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{{ 'Louvre Museum - Ticketing'|trans }}{% endblock %}</title>
+        {% stylesheets
+            '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'
+            filter='cssrewrite' output='css/compiled/app.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+    </head>
+
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+        </nav>
+    {% javascripts
+        '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
+        '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'
+        output='js/compiled/app.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    </body>
+</html>

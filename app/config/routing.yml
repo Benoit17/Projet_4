@@ -1,7 +1,5 @@
 purchase_platform:
     resource: "@PurchasePlatformBundle/Resources/config/routing.yml"
-    prefix:   /
-
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr

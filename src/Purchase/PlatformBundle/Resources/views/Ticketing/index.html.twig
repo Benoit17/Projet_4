@@ -1,15 +1,42 @@
 <!DOCTYPE html>
-    <html>
-        <head>
-            <title>Bienvenue sur ma première page avec OpenClassrooms !</title>
-        </head>
-        <body>
-            <h1>Hello World !</h1>
-                <p>
-                    Le Hello World est un grand classique en programmation.
-                    Il signifie énormément, car cela veut dire que vous avez
-                    réussi à exécuter le programme pour accomplir une tâche simple :
-                    afficher ce hello world !
-                </p>
-        </body>
-    </html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{{ 'Louvre Museum - Ticketing'|trans }}{% endblock %}</title>
+        {% stylesheets
+            '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'
+            'bundles/purchaseplatform/css/main.css'
+            filter='cssrewrite' output='css/compiled/app.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    </head>
+
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-target">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ path('purchase_platform_view') }}">{{ 'Ticketing'|trans }}</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-collapse-target">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{{ path('purchase_platform_translation', {'_locale': 'fr'}) }}">FR</a></li>
+                        <li><a href="{{ path('purchase_platform_translation', {'_locale': 'en'}) }}">EN</a></li>
+                    </ul>
+                </div>
+            </div><!-- /.container -->
+        </nav>
+        {% javascripts
+            '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
+            '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'
+            'bundles/purchaseplatform/js/main.js'
+            output='js/compiled/app.js' %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    </body>
+</html>

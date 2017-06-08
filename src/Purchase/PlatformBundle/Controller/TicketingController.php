@@ -9,10 +9,16 @@ class TicketingController extends Controller
 {
     public function indexAction()
     {
-        $content = $this
-            ->get('templating')
-            ->render('PurchasePlatformBundle:Ticketing:index.html.twig');
+        return $this->render('PurchasePlatformBundle:Ticketing:index.html.twig');
+    }
 
-        return new Response($content);
+    public function translationAction()
+    {
+        return $this->render('PurchasePlatformBundle:Ticketing:index.html.twig');
+    }
+
+    public function viewAction()
+    {
+        return $this->render('PurchasePlatformBundle:Ticketing:ticketing.html.twig');
     }
 }
