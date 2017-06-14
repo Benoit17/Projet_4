@@ -1,0 +1,64 @@
+[class*="col-"]{
+    padding: 0px;
+}
+
+body{
+    background: #331107;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+section{
+    background: white;
+    min-height: 200px;
+}
+
+footer{
+    background: #222222;
+    height: 200px;
+    color: white;
+}
+
+.navbar{
+    padding: 30px;
+    color: white;
+    border: 0px;
+    border-radius: 0px;
+    margin-bottom: 0px;
+}
+
+.information{
+    text-align: justify;
+    padding: 15px;
+}
+
+.panel-red{
+    background: #cc0000;
+    border: 0px;
+    border-radius: 0px;
+    color: white;
+}
+
+.panel-grey{
+    background: #4E4E4E !important;
+    border : #4E4E4E;
+    border-bottom: solid #D6D6D6 2px !important;
+    border-radius: 0px;
+    color: white;
+    margin-bottom: 0px;
+}
+
+.block{
+    display: flex;
+}
+
+.center{
+    margin: auto;
+}
+
+.btn-group{
+    margin-bottom: 15px;
+}

@@ -4,7 +4,7 @@ body
 {
     margin:0;
     padding:0;
-    background: url(Accueil.jpg) no-repeat center fixed;
+    background: url("images/Accueil.jpg") no-repeat center fixed;
     -webkit-background-size: cover; /* pour anciens Chrome et Safari */
     background-size: cover; /* version standardisée */
     display: flex;
@@ -16,10 +16,10 @@ body
     bottom:0; left:0;
     z-index:9999;
     width:100%;
-    border-radius:0;
-    padding:5px 10px;
+    padding:10px 10px;
     vertical-align:middle;
     margin:0;
+    color: white;
 }
 
 a

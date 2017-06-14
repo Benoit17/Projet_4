@@ -6,7 +6,7 @@
         <title>{% block title %}{{ 'Louvre Museum - Ticketing'|trans }}{% endblock %}</title>
         {% stylesheets
             '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'
-            'bundles/purchaseplatform/css/main.css'
+            'bundles/purchaseplatform/css/index.css'
             filter='cssrewrite' output='css/compiled/app.css' %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
@@ -34,7 +34,7 @@
         {% javascripts
             '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
             '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'
-            'bundles/purchaseplatform/js/main.js'
+            'bundles/purchaseplatform/js/index.js'
             output='js/compiled/app.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
