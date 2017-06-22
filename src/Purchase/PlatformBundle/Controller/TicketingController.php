@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Purchase\PlatformBundle\Entity\Ticket;
+use Purchase\PlatformBundle\Entity\User;
 use Purchase\PlatformBundle\Form\TicketType;
 
 
@@ -23,6 +24,7 @@ class TicketingController extends Controller
 
     public function viewAction(Request $request)
     {
+
         $ticket = new Ticket();
         $form   = $this->get('form.factory')->create(TicketType::class, $ticket);
 
@@ -32,8 +34,7 @@ class TicketingController extends Controller
             $em->flush();
 
             $request->getSession()->getFlashBag()->add('notice', 'Enregistré');
-
-            return $this->redirectToRoute('purchase_platform_home');
+            
         }
 
         return $this->render('PurchasePlatformBundle:Ticketing:ticketing.html.twig', array(

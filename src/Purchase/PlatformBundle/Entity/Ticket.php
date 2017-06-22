@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Ticket
 {
+    /**
+     * @ORM\ManyToMany(targetEntity="Purchase\PlatformBundle\Entity\User", cascade={"persist"})
+     * @ORM\JoinTable(name="purchase_ticket_user")
+     */
+    protected $users;
 
     /**
      * @var int
@@ -44,45 +49,16 @@ class Ticket
     private $number;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="name", type="string", length=50)
+     * @ORM\Column(name="price", type="integer")
      */
-    private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="lastname", type="string", length=255)
-     */
-    private $lastname;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="birthday", type="date")
-     */
-    private $birthday;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="reduce", type="boolean")
-     */
-    private $reduce;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255)
-     */
-    private $email;
-
+    private $price;
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -130,7 +106,7 @@ class Ticket
     /**
      * Get type
      *
-     * @return bool
+     * @return boolean
      */
     public function getType()
     {
@@ -154,7 +130,7 @@ class Ticket
     /**
      * Get number
      *
-     * @return int
+     * @return integer
      */
     public function getNumber()
     {
@@ -162,122 +138,67 @@ class Ticket
     }
 
     /**
-     * Set name
+     * Set price
      *
-     * @param string $name
+     * @param integer $price
      *
      * @return Ticket
      */
-    public function setName($name)
+    public function setPrice($price)
     {
-        $this->name = $name;
+        $this->price = $price;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get price
      *
-     * @return string
+     * @return integer
      */
-    public function getName()
+    public function getPrice()
     {
-        return $this->name;
+        return $this->price;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Set lastname
+     * Add user
      *
-     * @param string $lastname
+     * @param \Purchase\PlatformBundle\Entity\User $user
      *
      * @return Ticket
      */
-    public function setLastname($lastname)
+    public function addUser(\Purchase\PlatformBundle\Entity\User $user)
     {
-        $this->lastname = $lastname;
+        $user->addTicket($this);
 
-        return $this;
+        $this->users->add($user);
     }
 
     /**
-     * Get lastname
+     * Remove user
      *
-     * @return string
+     * @param \Purchase\PlatformBundle\Entity\User $user
      */
-    public function getLastname()
+    public function removeUser(\Purchase\PlatformBundle\Entity\User $user)
     {
-        return $this->lastname;
+        $this->users->removeElement($user);
     }
 
     /**
-     * Set birthday
+     * Get users
      *
-     * @param \DateTime $birthday
-     *
-     * @return Ticket
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function setBirthday($birthday)
+    public function getUsers()
     {
-        $this->birthday = $birthday;
-
-        return $this;
-    }
-
-    /**
-     * Get birthday
-     *
-     * @return \DateTime
-     */
-    public function getBirthday()
-    {
-        return $this->birthday;
-    }
-
-    /**
-     * Set reduce
-     *
-     * @param boolean $reduce
-     *
-     * @return Ticket
-     */
-    public function setReduce($reduce)
-    {
-        $this->reduce = $reduce;
-
-        return $this;
-    }
-
-    /**
-     * Get reduce
-     *
-     * @return boolean
-     */
-    public function getReduce()
-    {
-        return $this->reduce;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return Ticket
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
+        return $this->users;
     }
 }

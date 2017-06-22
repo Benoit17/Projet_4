@@ -48,43 +48,41 @@
                     <div id="item1" class="panel-collapse collapse in">
                         <section class="panel-body text-center">
                             {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-                            {{ form_row(form.date) }}
+                            {{ form_widget(form.date) }}
                         </section>
                     </div>
                     <div class="panel-heading panel-grey">
                         <a href="#item2" data-toggle="collapse">{{ 'Choose a ticket type'|trans }} <b class="caret"></b></a>
                     </div>
                     <div id="item2" class="panel-collapse collapse">
-                        <section class="panel-body">
-                            {{ form_row(form.type) }}
+                        <section class="panel-body text-center">
+                            {{ form_widget(form.type) }}
                         </section>
                     </div>
                     <div class="panel-heading panel-grey">
                         <a href="#item3" data-toggle="collapse">{{ 'Choose a ticket number'|trans }} <b class="caret"></b></a>
                     </div>
                     <div id="item3" class="panel-collapse collapse">
-                        <section class="panel-body">
-                            {{ form_row(form.number) }}
+                        <section class="panel-body text-center">
+                            {{ form_widget(form.number) }}
+                            {{ form_row(form.price) }}
                         </section>
                     </div>
                     <div class="panel-heading panel-grey">
                         <a href="#item4" data-toggle="collapse">{{ 'Information'|trans }} <b class="caret"></b></a>
                     </div>
                     <div id="item4" class="panel-collapse collapse">
-                        <section class="panel-body">
-                            {{ form_row(form.name) }}
-                            {{ form_row(form.lastname) }}
-                            {{ form_row(form.birthday) }}
-                            {{ form_row(form.reduce) }}
-                            {{ form_row(form.email) }}
+                        <section class="panel-body text-center">
+                            {{ form_row(form.users) }}
+                            {{ form_end(form) }}
                         </section>
                     </div>
                     <div class="panel-heading panel-grey">
                         <a href="#item5" data-toggle="collapse">{{ 'Basket'|trans }} <b class="caret"></b></a>
                     </div>
                     <div id="item5" class="panel-collapse collapse">
-                        <section class="panel-body">
-                            {{ form_end(form) }}
+                        <section class="panel-body text-center">
+
                         </section>
                     </div>
                 </div>

@@ -12,6 +12,13 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 
 class TicketType extends AbstractType
 {
@@ -21,15 +28,41 @@ class TicketType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date',   DateTimeType::class)
-            ->add('type',   RadioType::class)
-            ->add('number', NumberType::class)
-            ->add('name',   TextType::class)
-            ->add('lastname',   TextType::class)
-            ->add('birthday',   DateType::class)
-            ->add('reduce',   ChoiceType::class)
-            ->add('email',   TextType::class)
-            ->add('save',      SubmitType::class);
+            /*->add('date', DateTimeType::class, array(
+                'widget' => 'single_text',
+                'attr' => ['class' => 'datepicker']
+            ))*/
+            ->add('date', ChoiceType::class, array(
+                'choices' => array(
+                    'now' => new \DateTime('now'),
+                    'tomorrow' => new \DateTime('+1 day'),
+                    'other' => 'other'
+                )
+            ))
+
+            ->add('type', ChoiceType::class, array(
+                'choices'  => array(
+                    'journée' => true,
+                    'demi-journée' => false),
+                'expanded' => true,
+                'choice_attr' => function($val, $key, $index) {
+                    // adds a class like attending_yes, attending_no, etc
+                    return ['class' => 'checkboxradio'];
+                },
+            ))
+            ->add('number', NumberType::class, array(
+                /*'attr' => ['class'=> 'spinner']*/
+            ))
+            ->add('price', MoneyType::class);
+
+            $builder
+                ->add('users', CollectionType::class, array(
+                'entry_type'   => UserType::class,
+                'allow_add'    => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+            ))
+            ->add('save',   SubmitType::class);
     }
     
     /**
