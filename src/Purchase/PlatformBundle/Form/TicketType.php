@@ -53,10 +53,8 @@ class TicketType extends AbstractType
             ->add('number', NumberType::class, array(
                 /*'attr' => ['class'=> 'spinner']*/
             ))
-            ->add('price', MoneyType::class);
-
-            $builder
-                ->add('users', CollectionType::class, array(
+            ->add('price', MoneyType::class)
+            ->add('users', CollectionType::class, array(
                 'entry_type'   => UserType::class,
                 'allow_add'    => true,
                 'allow_delete' => true,

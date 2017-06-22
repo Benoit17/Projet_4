@@ -185,11 +185,4 @@ class User
     {
         return $this->email;
     }
-
-    public function addTicket(Ticket $ticket)
-    {
-        if (!$this->tickets->contains($ticket)) {
-            $this->tickets->add($ticket);
-        }
-    }
 }

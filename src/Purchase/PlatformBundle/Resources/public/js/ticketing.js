@@ -56,7 +56,13 @@ $(document).ready(function() {
         var template = $container.attr('data-prototype')
             .replace(/__name__label__/g, 'Billet n°' + (index+1))
             .replace(/__name__/g,        index)
+            .replace(/__firstName__/g,        index)
+            .replace(/__birthDate__/g,        index)
+            .replace(/__reduce__/g,        index)
+            .replace(/__name__/g,        index)
+            .replace(/__email__/g,        index)
             ;
+        console.log($container)
 
         // On crée un objet jquery qui contient ce template
         var $prototype = $(template);

@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Purchase\PlatformBundle\Entity\Ticket;
-use Purchase\PlatformBundle\Entity\User;
 use Purchase\PlatformBundle\Form\TicketType;
 
 
@@ -26,6 +25,7 @@ class TicketingController extends Controller
     {
 
         $ticket = new Ticket();
+
         $form   = $this->get('form.factory')->create(TicketType::class, $ticket);
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {

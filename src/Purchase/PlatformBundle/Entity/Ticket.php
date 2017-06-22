@@ -16,7 +16,7 @@ class Ticket
      * @ORM\ManyToMany(targetEntity="Purchase\PlatformBundle\Entity\User", cascade={"persist"})
      * @ORM\JoinTable(name="purchase_ticket_user")
      */
-    protected $users;
+    private $users;
 
     /**
      * @var int
@@ -177,9 +177,9 @@ class Ticket
      */
     public function addUser(\Purchase\PlatformBundle\Entity\User $user)
     {
-        $user->addTicket($this);
+        $this->users[] = $user;
 
-        $this->users->add($user);
+        return $this;
     }
 
     /**
