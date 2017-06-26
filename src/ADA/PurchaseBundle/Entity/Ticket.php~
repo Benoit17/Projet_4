@@ -1,0 +1,97 @@
+<?php
+
+namespace Purchase\PlatformBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ */
+class Ticket
+{
+    /**
+     * @ORM\ManyToMany(targetEntity="Purchase\PlatformBundle\Entity\User", cascade={"persist"})
+     */
+    private $users;
+
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(name="type", type="boolean")
+     */
+    private $type;
+
+    /**
+     * @ORM\Column(name="number", type="integer")
+     */
+    private $number;
+
+    /**
+     * @ORM\Column(name="price", type="integer")
+     */
+    private $price;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function setNumber($number)
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+}

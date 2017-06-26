@@ -1,5 +1,3 @@
-purchase_platform:
-    resource: "@PurchasePlatformBundle/Resources/config/routing.yml"
-    prefix:   /{_locale}
-    requirements:
-        _locale: en|fr
+ada_purchase:
+    resource: "@ADAPurchaseBundle/Resources/config/routing.yml"
+    prefix:   /

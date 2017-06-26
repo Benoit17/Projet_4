@@ -1,0 +1,15 @@
+ada_purchase_home:
+    path:      /
+    defaults:
+        _controller: ADAPurchaseBundle:Ticketing:index
+    
+ada_purchase_add:
+    path:      /ticketing
+    defaults:
+        _controller: ADAPurchaseBundle:Ticketing:add
+
+ada_purchase_translation:
+    path:    /
+    defaults:
+        _controller: ADAPurchaseBundle:Ticketing:translation
+
