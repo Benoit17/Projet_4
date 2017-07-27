@@ -2,17 +2,22 @@
 
 namespace ADA\PurchaseBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Customer
+ * CustomerMain
  *
- * @ORM\Table(name="ada_customer")
- * @ORM\Entity(repositoryClass="ADA\PurchaseBundle\Repository\CustomerRepository")
+ * @ORM\Table(name="ada_customer_main")
+ * @ORM\Entity(repositoryClass="ADA\PurchaseBundle\Repository\CustomerMainRepository")
  */
-class Customer
+class CustomerMain
 {
+    /**
+     * @ORM\ManyToMany(targetEntity="ADA\PurchaseBundle\Entity\CustomerSecondary", cascade={"persist"})
+     * @ORM\JoinTable(name="ada_customer")
+     */
+    private $customerSecondaries;
+
     /**
      * @var int
      *
@@ -37,13 +42,6 @@ class Customer
     private $firstName;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="country", type="string", length=255)
-     */
-    private $country;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="birth_date", type="date")
@@ -56,6 +54,14 @@ class Customer
      * @ORM\Column(name="reduce", type="boolean")
      */
     private $reduce;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
+
 
     /**
      * Get id
@@ -72,7 +78,7 @@ class Customer
      *
      * @param string $name
      *
-     * @return Customer
+     * @return CustomerMain
      */
     public function setName($name)
     {
@@ -96,7 +102,7 @@ class Customer
      *
      * @param string $firstName
      *
-     * @return Customer
+     * @return CustomerMain
      */
     public function setFirstName($firstName)
     {
@@ -116,35 +122,11 @@ class Customer
     }
 
     /**
-     * Set country
-     *
-     * @param string $country
-     *
-     * @return Customer
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return string
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
      * Set birthDate
      *
      * @param \DateTime $birthDate
      *
-     * @return Customer
+     * @return CustomerMain
      */
     public function setBirthDate($birthDate)
     {
@@ -168,7 +150,7 @@ class Customer
      *
      * @param boolean $reduce
      *
-     * @return Customer
+     * @return CustomerMain
      */
     public function setReduce($reduce)
     {
@@ -187,34 +169,35 @@ class Customer
         return $this->reduce;
     }
 
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return CustomerMain
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
     public function getAge()
     {
-        $age = $this->getBirthDate()->diff(new \DateTime());
+        $date = $this->getBirthDate();
+        $age = (time() - strtotime($date)) / 3600 / 24 / 365;
 
-        return $age->y;
-    }
-    
-    public function getPrice()
-    {
-        if ($this->getReduce() === true)
-        {
-            return $price = 10;
-        }
-        elseif ($this->getAge() < 4)
-        {
-            return $price = 0;
-        }
-        elseif ($this->getAge() >= 4 AND $this->getAge() < 12)
-        {
-            return $price = 8;
-        }
-        elseif ($this->getAge() >= 12 AND $this->getAge() < 60)
-        {
-            return $price = 16;
-        }
-         elseif ($this->getAge() > 60)
-        {
-            return $price = 12;
-        }
+        return $age;
     }
 }

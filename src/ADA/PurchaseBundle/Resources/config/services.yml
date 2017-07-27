@@ -10,3 +10,10 @@ services:
             - "@ada_purchase.email.application_mailer"
         tags:
             - { name: doctrine.event_listener, event: postPersist }
+
+    ada_purchase.sessionManager:
+        class: ADA\PurchaseBundle\Session\SessionManager
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@session"
+

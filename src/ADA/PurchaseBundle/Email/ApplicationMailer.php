@@ -3,7 +3,7 @@
 
 namespace ADA\PurchaseBundle\Email;
 
-use ADA\PurchaseBundle\Entity\Customer;
+use ADA\PurchaseBundle\Entity\Ticket;
 
 class ApplicationMailer
 {
@@ -17,7 +17,7 @@ class ApplicationMailer
         $this->mailer = $mailer;
     }
 
-    public function sendNewNotification(Customer $customer)
+    public function sendNewNotification(Ticket $ticket)
     {
         $message = new \Swift_Message(
             'Nouvelle candidature',
@@ -25,7 +25,7 @@ class ApplicationMailer
         );
 
         $message
-            ->addTo($customer->getEmail()) // Ici bien sûr il faudrait un attribut "email", j'utilise "author" à la place
+            ->addTo($ticket->getEmail())
             ->addFrom('admin@votresite.com')
         ;
 

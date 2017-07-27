@@ -1,6 +1,6 @@
 <?php
 
-namespace Purchase\PlatformBundle\Repository;
+namespace ADA\PurchaseBundle\Repository;
 
 /**
  * TicketRepository

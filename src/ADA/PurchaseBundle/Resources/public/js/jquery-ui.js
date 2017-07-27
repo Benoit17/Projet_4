@@ -8873,3 +8873,13 @@ function DisableSpecificDates(date) {
 		}
 	}
 }
+
+/** Days to be disabled as an array */
+	var now = new Date();
+	var hour = now.getHours();
+
+// Getter
+var disabled = $('.checkbox').checkboxradio( "option", "disabled" );
+
+// Setter
+$('.checkbox').checkboxradio( "journée", "disabled", true );

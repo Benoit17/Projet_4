@@ -3,10 +3,15 @@ ada_purchase_home:
     defaults:
         _controller: ADAPurchaseBundle:Ticketing:index
     
-ada_purchase_add:
+ada_purchase_ticket:
     path:      /ticketing
     defaults:
-        _controller: ADAPurchaseBundle:Ticketing:add
+        _controller: ADAPurchaseBundle:Ticketing:ticket
+
+ada_purchase_basket:
+    path:      /ticketing/basket
+    defaults:
+        _controller: ADAPurchaseBundle:Ticketing:basket
 
 ada_purchase_translation:
     path:    /

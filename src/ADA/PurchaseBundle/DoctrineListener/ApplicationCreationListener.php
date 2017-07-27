@@ -4,7 +4,7 @@ namespace ADA\PurchaseBundle\DoctrineListener;
 
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use ADA\PurchaseBundle\Email\ApplicationMailer;
-use ADA\PurchaseBundle\Entity\Customer;
+use ADA\PurchaseBundle\Entity\Ticket;
 
 class ApplicationCreationListener
 {
@@ -22,7 +22,7 @@ class ApplicationCreationListener
     {
         $entity = $args->getObject();
         
-        if (!$entity instanceof Customer) {
+        if (!$entity instanceof Ticket) {
             return;
         }
 

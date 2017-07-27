@@ -50,12 +50,25 @@ class Ticket
     private $number;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="price", type="integer")
+     * @ORM\Column(name="email", type="string", length=255)
      */
-    private $price;
+    private $email;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email_confirm", type="string", length=255)
+     */
+    private $emailConfirm;
+
+    /**
+     * @var decimal
+     *
+     * @ORM\Column(name="total_price", type="decimal", precision=7, scale=2, nullable=true)
+     */
+    private $totalPrice;
 
     /**
      * Get id
@@ -140,40 +153,65 @@ class Ticket
     }
 
     /**
-     * Set price
+     * Set email
      *
-     * @param integer $price
+     * @param string $email
      *
-     * @return Ticket
+     * @return Customer
      */
-    public function setPrice($price)
+    public function setEmail($email)
     {
-        $this->price = $price;
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * Get price
+     * Get email
      *
-     * @return int
+     * @return string
      */
-    public function getPrice()
+    public function getEmail()
     {
-        return $this->price;
+        return $this->email;
     }
+
+    /**
+     * Set emailConfirm
+     *
+     * @param string $emailConfirm
+     *
+     * @return Customer
+     */
+    public function setEmailConfirm($emailConfirm)
+    {
+        $this->emailConfirm = $emailConfirm;
+
+        return $this;
+    }
+
+    /**
+     * Get emailConfirm
+     *
+     * @return string
+     */
+    public function getEmailConfirm()
+    {
+        return $this->emailConfirm;
+    }
+    
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->customers   = new ArrayCollection();
+        $this->customers = new ArrayCollection();
     }
 
     /**
      * Add customer
      *
-     * @param \ADA\PurchaseBundle\Entity\Customer $customer
+     * @param Customer $customer
      *
      * @return Ticket
      */
@@ -202,5 +240,33 @@ class Ticket
     public function getCustomers()
     {
         return $this->customers;
+    }
+
+    /**
+     * Set Totalprice
+     *
+     * @param integer $price
+     *
+     * @return Customer
+     */
+    public function setTotalPrice($totalPrice)
+    {
+        $this->totalPrice = $totalPrice;
+
+        return $this;
+    }
+
+    /**
+     * Get Totalprice
+     *
+     * @return integer
+     */
+    public function getTotalPrice()
+    {
+        $totalPrice = 0;
+        foreach ($this->getCustomers() as $customer) {
+            $totalPrice += $customer->getPrice();
+        }
+        return $totalPrice;
     }
 }

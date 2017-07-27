@@ -62,3 +62,14 @@ footer{
 .btn-group{
     margin-bottom: 15px;
 }
+
+.ticket{
+    border-bottom : solid black 1px;
+    padding-bottom: 15px;
+}
+
+.customer{
+    border-bottom : dotted black 1px;
+    text-align: left;
+    padding-bottom: 15px;
+}

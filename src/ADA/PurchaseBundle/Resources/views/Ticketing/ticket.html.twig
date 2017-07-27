@@ -1,0 +1,56 @@
+{% extends "ADAPurchaseBundle::layout.html.twig" %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <div class="panel-heading panel-grey">
+        <a href="#item1" data-toggle="collapse">{{ 'Choose date'|trans }} <b class="caret"></b></a>
+    </div>
+    <div id="item1" class="panel-collapse collapse in">
+        <section class="panel-body text-center">
+            <div class="input-group">
+                {{ form_widget(form.date) }}
+                <div class="input-group-addon">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="panel-heading panel-grey">
+        <a href="#item2" {#data-toggle="collapse"#}>{{ 'Choose a ticket type'|trans }} <b class="caret"></b></a>
+    </div>
+    <div id="item2" {#class="panel-collapse collapse"#}>
+        <section class="panel-body text-center">
+            {{ form_widget(form.type) }}
+        </section>
+    </div>
+    <div class="panel-heading panel-grey">
+        <a href="#item3" data-toggle="collapse">{{ 'Choose a ticket number'|trans }} <b class="caret"></b></a>
+    </div>
+    <div id="item3" class="panel-collapse collapse">
+        <section class="panel-body text-center">
+            {{ form_widget(form.number) }}
+        </section>
+    </div>
+    <div class="panel-heading panel-grey">
+        <a href="#item4" data-toggle="collapse">{{ 'Email'|trans }} <b class="caret"></b></a>
+    </div>
+    <div id="item4" class="panel-collapse collapse">
+        <section class="panel-body text-center">
+            {{ form_row(form.email)}}
+            {{ form_row(form.emailConfirm)}}
+        </section>
+    </div>
+    <div class="panel-heading panel-grey">
+        <a href="#item5" data-toggle="collapse">{{ 'Information'|trans }} <b class="caret"></b></a>
+    </div>
+    <div id="item5" class="panel-collapse collapse">
+        <section class="panel-body text-center">
+            {{ form_row(form.customers) }}
+            <div>
+                <input type="submit" value="{{ 'validate'|trans }}" class="btn btn-success" />
+            </div>
+        </section>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
+

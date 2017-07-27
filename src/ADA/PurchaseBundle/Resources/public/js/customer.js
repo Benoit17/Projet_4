@@ -1,65 +1,34 @@
-jQuery(function($){
-    $('.datepicker').datepicker({
-        minDate: 0,
-        beforeShowDay: DisableSpecificDates
-    });
-});
-
-jQuery(function(){
-    $( ".spinner" ).spinner({
-        min: 0,
-        max: 10
-    });
-});
-
-jQuery(function($){
-    $('.checkboxradio').checkboxradio({
-    });
-});
-
-jQuery(function($){
-    $( ".controlgroup" ).controlgroup({
-    });
-});
-
-
 $(document).ready(function() {
     // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
-    var $container = $('div#ticket_users');
+    var $container = $('div#ticket_customers');
 
     // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
     var index = $container.find(':input').length;
 
     // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
-    $('#add_user').click(function(e) {
-        addUser($container);
+    $('.ui-spinner-up').click(function(e) {
+        addCustomer($container);
 
         e.preventDefault(); // évite qu'un # apparaisse dans l'URL
         return false;
     });
 
-    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
-    if (index == 0) {
-        addUser($container);
-    } else {
-        // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
-        $container.children('div').each(function() {
-            addDeleteLink($(this));
-        });
-    }
+    // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+    $('.ui-spinner-down').click(function(e) {
+        removeCustomer($container);
 
-    // La fonction qui ajoute un formulaire UserType
-    function addUser($container) {
+        e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+        return false;
+    });
+
+    // La fonction qui ajoute un formulaire CustomerType
+    function addCustomer($container) {
         // Dans le contenu de l'attribut « data-prototype », on remplace :
         // - le texte "__name__label__" qu'il contient par le label du champ
         // - le texte "__name__" qu'il contient par le numéro du champ
         var template = $container.attr('data-prototype')
             .replace(/__name__label__/g, 'Billet n°' + (index+1))
-            .replace(/__name__/g,        index)
-
-
-            ;
-        console.log($container)
+            .replace(/__name__/g,        index);
 
         // On crée un objet jquery qui contient ce template
         var $prototype = $(template);
@@ -72,6 +41,11 @@ $(document).ready(function() {
 
         // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
         index++;
+    }
+
+    // La fonction qui ajoute un formulaire CustomerType
+    function removeCustomer($container) {
+        $container.remove($prototype);
     }
 
     // La fonction qui ajoute un lien de suppression d'une catégorie
