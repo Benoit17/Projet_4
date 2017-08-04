@@ -4,6 +4,7 @@ services:
         arguments:
             - "@mailer"
             - "@templating"
+            - "@ada_purchase.barCodeManager"
 
     ada_purchase.doctrine_listener.application_creation:
         class: ADA\PurchaseBundle\DoctrineListener\ApplicationCreationListener
@@ -20,3 +21,13 @@ services:
 
     ada_purchase.priceManager:
         class: ADA\PurchaseBundle\Price\PriceManager
+
+    ada_purchase.barCodeManager:
+            class: ADA\PurchaseBundle\BarCode\BarCodeManager
+
+    ada_purchase.barCodeManager_extension:
+                class: ADA\PurchaseBundle\Twig\BarCodeManagerExtension
+                arguments:
+                    - "@ada_purchase.barCodeManager"
+                tags:
+                    - { name: twig.extension}

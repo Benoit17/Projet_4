@@ -7,10 +7,6 @@
     <title>{% block title %}{{ 'Louvre Museum - Ticketing'|trans }}{% endblock %}</title>
     {% stylesheets
     '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'
-    'bundles/adapurchase/css/ticketing.css'
-    'bundles/adapurchase/css/jquery-ui.css'
-    'bundles/adapurchase/css/jquery-ui.structure.css'
-    'bundles/adapurchase/css/jquery-ui.theme.css'
     filter='cssrewrite' output='css/compiled/app.css' %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
@@ -63,14 +59,11 @@
                 </div>
             </div>
         </div>
+        <div>{{ getBarCode() }}</div>
     </div>
     {% javascripts
     '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
-    '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'
-    'bundles/adapurchase/js/jquery-ui.js'
-    'bundles/adapurchase/js/ticket.js'
-    'bundles/adapurchase/js/customer.js'
-    'bundles/adapurchase/js/basket.js' %}
+    '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js' %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 </body>

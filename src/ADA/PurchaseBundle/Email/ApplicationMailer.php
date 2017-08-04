@@ -1,5 +1,4 @@
 <?php
-// src/OC/PlatformBundle/Email/ApplicationMailer.php
 
 namespace ADA\PurchaseBundle\Email;
 
@@ -8,14 +7,13 @@ use ADA\PurchaseBundle\Entity\Ticket;
 
 
 class ApplicationMailer
+
 {
     /**
      * @var \Swift_Mailer
      */
     private $mailer;
-
     private $templating;
-
 
     public function __construct(\Swift_Mailer $mailer, EngineInterface $templating)
     {

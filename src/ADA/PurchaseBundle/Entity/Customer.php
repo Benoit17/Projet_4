@@ -193,7 +193,7 @@ class Customer
 
         return $age->y;
     }
-    
+
     public function getPrice()
     {
         if ($this->getReduce() === true)

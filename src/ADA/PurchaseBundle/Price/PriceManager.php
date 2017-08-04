@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ADA\PurchaseBundle\Price;
 
 use ADA\PurchaseBundle\Entity\Ticket;
