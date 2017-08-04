@@ -2,6 +2,7 @@
 
 namespace ADA\PurchaseBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -54,6 +55,13 @@ class Ticket
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
+
+    /**
+     * @var decimal
+     *
+     * @ORM\Column(name="total_price", type="decimal", precision=7, scale=2, nullable=true)
+     */
+    private $totalPrice;
 
     /**
      * Get id
@@ -142,7 +150,7 @@ class Ticket
      *
      * @param string $email
      *
-     * @return CustomerMain
+     * @return Customer
      */
     public function setEmail($email)
     {
@@ -160,5 +168,51 @@ class Ticket
     {
         return $this->email;
     }
+
+    /**
+     * Set emailConfirm
+     *
+     * @param string $em
     
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->customers = new ArrayCollection();
+    }
+
+    /**
+     * Add customer
+     *
+     * @param Customer $customer
+     *
+     * @return Ticket
+     */
+    public function addCustomer(Customer $customer)
+    {
+        $this->customers[] = $customer;
+
+        return $this;
+    }
+
+    /**
+     * Remove customer
+     *
+     * @param \ADA\PurchaseBundle\Entity\Customer $customer
+     */
+    public function removeCustomer(Customer $customer)
+    {
+        $this->customers->removeElement($customer);
+    }
+
+    /**
+     * Get customers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCustomers()
+    {
+        return $this->customers;
+    }
 }

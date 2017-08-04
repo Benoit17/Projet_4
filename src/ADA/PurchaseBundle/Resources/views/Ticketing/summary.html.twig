@@ -1,0 +1,57 @@
+{% extends "ADAPurchaseBundle::layout.html.twig" %}
+
+{% block body %}
+    <div class="panel-heading panel-grey">
+        {{ 'Summary'|trans }}
+    </div>
+    <section class="panel-body text-center">
+        <p class="ticket">
+            email : {{ ticket.email }} </br>
+            date : {{ ticket.date|date('d/m/Y') }} </br>
+            {{ 'form.number'|trans  }} : {{ ticket.number }} </br>
+            type :
+            {% if (ticket.type == true) %}
+                Journée
+            {% else %}
+                Demi-Journée
+            {% endif %}
+        </p>
+
+        {% for customer in ticket.customers %}
+            <p class="customer">
+                {{ 'form.firstName'|trans }} : {{ customer.firstName }} </br>
+                {{ 'form.name'|trans }} : {{ customer.name }} </br>
+                {{ 'form.country'|trans }} : {{ customer.country}} </br>
+                {{ 'form.birthDate'|trans }} : {{ customer.birthDate|date('d/m/Y') }} </br>
+                {{ 'form.reduce'|trans }} :
+                {% if (customer.reduce) %}
+                    oui
+                {% else %}
+                    non
+                {% endif %} </br>
+                {{ 'price'|trans }} : {{ customer.price|number_format(2, '.', ',') }}€
+            </p>
+        {% endfor %}
+
+        <p>Total : {{ ticket.totalPrice|number_format(2, '.', ',') }}€</p>
+
+        {% if ticket.totalPrice > 0 %}
+            <form action="{{ path('ada_purchase_payment') }}" method="POST">
+                <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="{{ stripe_data_key }}"
+                        data-amount="{{ ticket.totalPrice|number_format(2, '.', ',') * 100 }}"
+                        data-name="{{ 'Louvre museum'|trans }}"
+                        data-email="{{ ticket.email }}"
+                        data-description="{{ 'Payment'|trans }}"
+                        data-label="{{ 'Pay'|trans }}"
+                        data-locale="{{ app.request.locale }}"
+                        data-currency="eur">
+                </script>
+            </form>
+        {% else %}
+            <a href="{{ path('final_command') }}"><button class="btn btn-success btn-sm" >{{ 'button.receive'|trans }}</button></a>
+        {% endif %}
+    </section>
+{% endblock %}
+

@@ -1,3 +1,21 @@
-Musée du Louvre - Billeterie: Louvre museum - Ticketing
-Billetterie: Ticketing
-En poursuivant votre navigation sur ce site, vous acceptez l’utilisation de cookies.: By continuing your browsing on this site, you agree to the use of cookies.
+form :
+    day : Day
+    halfDay : Half-Day
+    email : email
+    confirmEmail : email confirm
+    name : name
+    firstName : first name
+    country : country
+    birthDate : birth date
+    reduce : reduce
+
+rates :
+    normal : from 12 years old
+    child : from 4 years and up to 12 years old (admission is free for children under 4 years)
+    senior : from 60 years old
+    reduce : Reduced price of 10 € granted under certain conditions (student, employee of the museum, a department of the Ministry of Culture, military ...
+
+final :
+    confirmation : You have just received a confirmation email containing your tickets.
+    instructions : Follow the instructions to use your tickets.
+    thanks : Thank you for your order, We wish you a pleasant visit!

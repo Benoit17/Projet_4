@@ -8,13 +8,23 @@ ada_purchase_ticket:
     defaults:
         _controller: ADAPurchaseBundle:Ticketing:ticket
 
-ada_purchase_basket:
-    path:      /ticketing/basket
+ada_purchase_test:
+    path:      /ticketing
     defaults:
-        _controller: ADAPurchaseBundle:Ticketing:basket
+        _controller: ADAPurchaseBundle:Ticketing:test
 
-ada_purchase_translation:
-    path:    /
+ada_purchase_summary:
+    path:      /ticketing/summary
     defaults:
-        _controller: ADAPurchaseBundle:Ticketing:translation
+        _controller: ADAPurchaseBundle:Ticketing:summary
+
+ada_purchase_payment:
+    path:      /ticketing/payment
+    defaults:
+        _controller: ADAPurchaseBundle:Ticketing:payment
+
+ada_purchase_final:
+    path:      /ticketing/final
+    defaults:
+        _controller: ADAPurchaseBundle:Ticketing:final
 

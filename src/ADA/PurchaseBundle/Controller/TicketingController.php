@@ -9,6 +9,9 @@ use ADA\PurchaseBundle\Entity\Ticket;
 use ADA\PurchaseBundle\Entity\Customer;
 use ADA\PurchaseBundle\Form\TicketType;
 use ADA\PurchaseBundle\Form\CustomerType;
+use Stripe\Charge;
+use Stripe\Error\Card;
+use Stripe\Stripe;
 
 
 
@@ -19,37 +22,6 @@ class TicketingController extends Controller
         return $this->render('ADAPurchaseBundle:Ticketing:index.html.twig');
     }
 
-    /*public function translationAction()
-    {
-        return $this->render('ADAPurchaseBundle:Ticketing:index.html.twig');
-    }*/
-
-    /*public function addAction(Request $request)
-    {
-        $repository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('ADAPurchaseBundle:Customer')
-        ;
-        $customers = $repository->findAll();
-        $ticket = new Ticket();
-        $form   = $this->get('form.factory')->create(TicketType::class, $ticket);
-
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($ticket);
-            $em->flush();
-
-            $request->getSession()->getFlashBag()->add('notice', 'Enregistré');
-            
-        }
-
-        return $this->render('ADAPurchaseBundle:Ticketing:ticket.html.twig', array(
-            'customers' => $customers,
-            'form' => $form->createView(),
-            ));
-    }*/
-
     public function ticketAction(Request $request)
     {
         $ticket = new Ticket();
@@ -57,20 +29,41 @@ class TicketingController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->get('ada_purchase.sessionManager')->setSessionTicket($ticket);
-            return $this->redirectToRoute('ada_purchase_basket');
+            return $this->redirectToRoute('ada_purchase_summary');
         }
         return $this->render('ADAPurchaseBundle:Ticketing:ticket.html.twig', array(
             'form' => $form->createView(),
         ));
     }
 
-    public function basketAction()
+    public function summaryAction()
     {
         $ticket = $this->get('ada_purchase.sessionManager')->getSessionTicket();
-        if ($ticket === null) { return $this->redirectToRoute('ada_purchase_index'); }
+        if ($ticket === null) { return $this->redirectToRoute('ada_purchase_home'); }
+        $this->get('ada_purchase.priceManager')->getTotalPriceTicket($ticket);
         $this->get('ada_purchase.sessionManager')->setSessionTicket($ticket);
-        return $this->render('ADAPurchaseBundle:Ticketing:basket.html.twig', array(
+        return $this->render('ADAPurchaseBundle:Ticketing:summary.html.twig', array(
             'ticket' => $ticket,
         ));
+    }
+
+    public function paymentAction()
+    {
+        $ticket = $this->get('ada_purchase.sessionManager')->getSessionTicket();
+        if ($ticket === null) { return $this->redirectToRoute('ada_purchase_home'); }
+
+        Stripe::setApiKey($this->getParameter('stripe_api_key'));
+        $this->get('ada_purchase.sessionManager')->setSessionTicket($ticket);
+        return $this->redirectToRoute('ada_purchase_final');
+
+    }
+
+    public function finalAction()
+    {
+        $ticket = $this->get('ada_purchase.sessionManager')->getSessionTicket();
+        if ($ticket === null) { return $this->redirectToRoute('ada_purchase_home'); }
+        $this->get('ada_purchase.sessionManager')->saveTicket($ticket);
+
+        return $this->render('ADAPurchaseBundle:Ticketing:final.html.twig');
     }
 }

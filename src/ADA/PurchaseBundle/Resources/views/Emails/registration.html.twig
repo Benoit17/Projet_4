@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ 'Louvre Museum - Ticketing'|trans }}{% endblock %}</title>
+    {% stylesheets
+    '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'
+    'bundles/adapurchase/css/ticketing.css'
+    'bundles/adapurchase/css/jquery-ui.css'
+    'bundles/adapurchase/css/jquery-ui.structure.css'
+    'bundles/adapurchase/css/jquery-ui.theme.css'
+    filter='cssrewrite' output='css/compiled/app.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="well">
+                    <div class="row">
+                        <div class="col-sm-8" style="text-align: center">
+                            <h3>{{ 'Louvre museum'|trans }}</h3>
+                            <p>{{ 'Order'|trans }} n° : {{ ticket.id }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="well">
+                    <p class="ticket">
+                        email : {{ ticket.email }} </br>
+                        date : {{ ticket.date|date('d/m/Y') }} </br>
+                        {{ 'form.number'|trans  }} : {{ ticket.number }} </br>
+                        type :
+                        {% if (ticket.type == true) %}
+                            Journée
+                        {% else %}
+                            Demi-Journée
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="well">
+                        {% for customer in ticket.Customers %}
+                            <p class="customer">
+                                {{ 'form.firstName'|trans }} : {{ customer.firstName }} </br>
+                                {{ 'form.name'|trans }} : {{ customer.name }} </br>
+                                {{ 'form.country'|trans }} : {{ customer.country}} </br>
+                                {{ 'form.birthDate'|trans }} : {{ customer.birthDate|date('d/m/Y') }} </br>
+                                {{ 'form.reduce'|trans }} :
+                                {% if (customer.reduce) %}
+                                    oui
+                                {% else %}
+                                    non
+                                {% endif %} </br>
+                                {{ 'price'|trans }} : {{ customer.price|number_format(2, '.', ',') }}€
+                            </p>
+                        {% endfor %}
+                    <br />
+                    <p>Total : {{ ticket.totalPrice|number_format(2, '.', ',') }}€</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% javascripts
+    '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
+    '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'
+    'bundles/adapurchase/js/jquery-ui.js'
+    'bundles/adapurchase/js/ticket.js'
+    'bundles/adapurchase/js/customer.js'
+    'bundles/adapurchase/js/basket.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

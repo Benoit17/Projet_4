@@ -1,0 +1,15 @@
+{% extends "ADAPurchaseBundle::layout.html.twig" %}
+
+{% block body %}
+    <div class="panel-heading panel-grey">
+        {{ 'Finalization'|trans }}
+    </div>
+    <section class="panel-body text-center">
+        <p>
+        {{ 'final.confirmation'|trans }}</br>
+        {{ 'final.instructions'|trans }}</br></br>
+        {{ 'final.thanks'|trans }}
+        </p>
+        <a href="{{ path('ada_purchase_home') }}" class="btn btn-info" title="Return">{{ 'Return'|trans }}</a>
+    </section>
+{% endblock %}

@@ -1,7 +1,7 @@
 jQuery(function($){
     $('.datepicker').datepicker({
-        /*minDate: 0,
-        beforeShowDay: DisableSpecificDates*/
+        minDate: 0,
+        beforeShowDay: DisableSpecificDates
     });
 });
 
@@ -55,10 +55,7 @@ jQuery(function($) {
     });
 });
 
-jQuery(function($){
-    $('.controlgroup').controlgroup({
-    });
-});
+$('#ticket_number').attr('readonly', 'readonly');
 
 
 

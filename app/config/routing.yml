@@ -1,3 +1,12 @@
-ada_purchase:
+app:
     resource: "@ADAPurchaseBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
+    requirements:
+        _locale: '%app_locales%'
+
+root:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /fr
+        permanent: false

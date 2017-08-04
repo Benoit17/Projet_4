@@ -10,9 +10,11 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class TicketType extends AbstractType
 {
@@ -28,8 +30,8 @@ class TicketType extends AbstractType
             ))
             ->add('type', ChoiceType::class, array(
                 'choices'  => array(
-                    'journée' => true,
-                    'demi-journée' => false),
+                    'form.day' => true,
+                    'form.halfDay' => false),
                 'expanded' => true,
                 'choice_attr' => function($val, $key, $index) {
                     // adds a class like attending_yes, attending_no, etc
@@ -39,14 +41,17 @@ class TicketType extends AbstractType
             ->add('number', NumberType::class, array(
                 'attr' => ['class'=> 'spinner']
             ))
-            ->add('email', EmailType::class)
-            ->add('emailConfirm', EmailType::class)
+            ->add('email', RepeatedType::class, array(
+                'type' => EmailType::class,
+                'required' => true,
+                'first_options'  => array('label' => 'form.email'),
+                'second_options' => array('label' => 'form.confirmEmail')
+            ))
             ->add('customers', CollectionType::class, array(
                 'entry_type'   => CustomerType::class,
                 'allow_add'    => true,
                 'allow_delete' => true,
-            ))
-            ->add('totalPrice');
+            ));
     }
     
     /**
@@ -59,3 +64,4 @@ class TicketType extends AbstractType
         ));
     }
 }
+

@@ -1,0 +1,37 @@
+{% extends "ADAPurchaseBundle::layout.html.twig" %}
+
+{% block body %}
+    <div id="monaccordeon" class="panel-group col-lg-6">
+        <h3> Les plugins de Bootstrap</h3>
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a href="#item1" data-parent="#monaccordeon" data-toggle="collapse"> Accordéon </a>
+                </h3>
+            </div>
+            <div id="item1" class="panel-collapse collapse in">
+                <div class="panel-body"> Ce plugin permet de créer des effets "accordéon" totalement paramétrables</div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a href="#item2" data-parent="#monaccordeon" data-toggle="collapse"> Fenêtre modale </a>
+                </h3>
+            </div>
+            <div id="item2" class="panel-collapse collapse">
+                <div class="panel-body"> Ce plugin permet de créer des fenêtres modales élégantes avec une grande simplicité. </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a href="#item3" data-parent="#monaccordeon" data-toggle="collapse"> Carousel </a>
+                </h3>
+            </div>
+            <div id="item3" class="panel-collapse collapse">
+                <div class="panel-body"> Ce plugin permet de faire défiler des images ou des vidéo, ou tout autre élément média avec une mise en forme esthétique </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

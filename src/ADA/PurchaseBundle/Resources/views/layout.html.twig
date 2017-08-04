@@ -36,12 +36,11 @@
         </div>
         <div class="row">
             <section class="col-sm-8 col-sm-offset-2 information">
-                Entrée libre, sans billet, sur présentation d’un justificatif pour les moins de 18 ans, les 18-25 ans résidents de l’Espace Economique Européen, les personnes handicapées et leur accompagnateur, et les bénéficiaires des minima sociaux.
-                Billet valable seulement le jour sélectionné.
+                {{ 'Welcome'|trans }}
             </section>
         </div>
         <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
+            <div  class="col-sm-8 col-sm-offset-2">
                 {% block body %}
                 {% endblock %}
             </div>
@@ -49,8 +48,28 @@
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2">
                 <footer>
-                TEST
+                    <a href="#myModal" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> {{ 'Rates'|trans }}</a><br><br>
                 </footer>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">{{ 'Rates'|trans }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li>Normal : {{ 'rates.normal'|trans }} <span class="glyphicon glyphicon-arrow-right"></span> 16€</li>
+                            <li>{{ 'Child'|trans }} : {{ 'rates.child'|trans }} <span class="glyphicon glyphicon-arrow-right"></span> 8€</li>
+                            <li>Senior : {{ 'rates.senior'|trans }} <span class="glyphicon glyphicon-arrow-right"></span> 12€</li>
+                            <li>{{ 'rates.reduce'|trans }})</li>
+                        </ul>
+                        <br>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -59,8 +78,7 @@
         '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'
         'bundles/adapurchase/js/jquery-ui.js'
         'bundles/adapurchase/js/ticket.js'
-        'bundles/adapurchase/js/customer.js'
-        'bundles/adapurchase/js/basket.js' %}
+        'bundles/adapurchase/js/customer.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
     </body>

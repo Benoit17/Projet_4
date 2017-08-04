@@ -3,6 +3,7 @@ services:
         class: ADA\PurchaseBundle\Email\ApplicationMailer
         arguments:
             - "@mailer"
+            - "@templating"
 
     ada_purchase.doctrine_listener.application_creation:
         class: ADA\PurchaseBundle\DoctrineListener\ApplicationCreationListener
@@ -17,3 +18,5 @@ services:
             - "@doctrine.orm.entity_manager"
             - "@session"
 
+    ada_purchase.priceManager:
+        class: ADA\PurchaseBundle\Price\PriceManager

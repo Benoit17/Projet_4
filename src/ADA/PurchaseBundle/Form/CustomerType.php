@@ -18,12 +18,22 @@ class CustomerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('firstName', TextType::class)
-            ->add('country', CountryType::class)
-            ->add('birthDate', BirthdayType::class, array(
+            ->add('name', TextType::class, array(
+                'label' => 'form.name'
             ))
-            ->add('reduce', CheckboxType::class, array('required' => false));
+            ->add('firstName', TextType::class, array(
+                'label' => 'form.firstName'
+            ))
+            ->add('country', CountryType::class, array(
+                'label' => 'form.country'
+            ))
+            ->add('birthDate', BirthdayType::class, array(
+                'label' => 'form.birthDate'
+            ))
+            ->add('reduce', CheckboxType::class, array(
+                'label' => 'form.reduce',
+                'required' => false
+            ));
     }
     
     /**

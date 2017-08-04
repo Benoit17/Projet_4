@@ -3,7 +3,9 @@
 
 namespace ADA\PurchaseBundle\Email;
 
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use ADA\PurchaseBundle\Entity\Ticket;
+
 
 class ApplicationMailer
 {
@@ -12,23 +14,26 @@ class ApplicationMailer
      */
     private $mailer;
 
-    public function __construct(\Swift_Mailer $mailer)
+    private $templating;
+
+
+    public function __construct(\Swift_Mailer $mailer, EngineInterface $templating)
     {
         $this->mailer = $mailer;
+        $this->templating = $templating;
     }
 
     public function sendNewNotification(Ticket $ticket)
     {
-        $message = new \Swift_Message(
-            'Nouvelle candidature',
-            'Vous avez reçu une nouvelle candidature.'
-        );
-
-        $message
-            ->addTo($ticket->getEmail())
-            ->addFrom('admin@votresite.com')
-        ;
+        $message = (new \Swift_Message('Hello Email'))
+            ->setFrom('send@example.com')
+            ->setTo($ticket->getEmail())
+            ->setBody(
+                $this->templating->render('ADAPurchaseBundle:Emails:registration.html.twig', array('ticket' => $ticket)),
+                'text/html'
+            );
 
         $this->mailer->send($message);
     }
+
 }

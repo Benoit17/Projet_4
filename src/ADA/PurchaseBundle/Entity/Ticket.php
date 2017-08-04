@@ -57,13 +57,6 @@ class Ticket
     private $email;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="email_confirm", type="string", length=255)
-     */
-    private $emailConfirm;
-
-    /**
      * @var decimal
      *
      * @ORM\Column(name="total_price", type="decimal", precision=7, scale=2, nullable=true)
@@ -179,26 +172,7 @@ class Ticket
     /**
      * Set emailConfirm
      *
-     * @param string $emailConfirm
-     *
-     * @return Customer
-     */
-    public function setEmailConfirm($emailConfirm)
-    {
-        $this->emailConfirm = $emailConfirm;
-
-        return $this;
-    }
-
-    /**
-     * Get emailConfirm
-     *
-     * @return string
-     */
-    public function getEmailConfirm()
-    {
-        return $this->emailConfirm;
-    }
+     * @param string $em
     
     /**
      * Constructor
@@ -243,11 +217,11 @@ class Ticket
     }
 
     /**
-     * Set Totalprice
+     * Set totalPrice
      *
-     * @param integer $price
+     * @param string $totalPrice
      *
-     * @return Customer
+     * @return Ticket
      */
     public function setTotalPrice($totalPrice)
     {
@@ -257,16 +231,12 @@ class Ticket
     }
 
     /**
-     * Get Totalprice
+     * Get totalPrice
      *
-     * @return integer
+     * @return string
      */
     public function getTotalPrice()
     {
-        $totalPrice = 0;
-        foreach ($this->getCustomers() as $customer) {
-            $totalPrice += $customer->getPrice();
-        }
-        return $totalPrice;
+        return $this->totalPrice;
     }
 }

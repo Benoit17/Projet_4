@@ -2,8 +2,10 @@
 
 {% block body %}
     {{ form_start(form) }}
+    <div id="monaccordeon">
+<div class="panel">
     <div class="panel-heading panel-grey">
-        <a href="#item1" data-toggle="collapse">{{ 'Choose date'|trans }} <b class="caret"></b></a>
+        <a href="#item1" data-parent="#monaccordeon"  data-toggle="collapse">{{ 'Choose date'|trans }} <b class="caret"></b></a>
     </div>
     <div id="item1" class="panel-collapse collapse in">
         <section class="panel-body text-center">
@@ -15,41 +17,50 @@
             </div>
         </section>
     </div>
+</div>
+<div class="panel">
     <div class="panel-heading panel-grey">
-        <a href="#item2" {#data-toggle="collapse"#}>{{ 'Choose a ticket type'|trans }} <b class="caret"></b></a>
+        <a href="#item2" data-parent="#monaccordeon" data-toggle="collapse">{{ 'Choose a ticket type'|trans }} <b class="caret"></b></a>
     </div>
-    <div id="item2" {#class="panel-collapse collapse"#}>
+    <div id="item2" class="panel-collapse collapse">
         <section class="panel-body text-center">
             {{ form_widget(form.type) }}
         </section>
     </div>
+</div>
+<div class="panel">
     <div class="panel-heading panel-grey">
-        <a href="#item3" data-toggle="collapse">{{ 'Choose a ticket number'|trans }} <b class="caret"></b></a>
+        <a href="#item3" data-parent="#monaccordeon" data-toggle="collapse">{{ 'Choose a ticket number'|trans }} <b class="caret"></b></a>
     </div>
     <div id="item3" class="panel-collapse collapse">
         <section class="panel-body text-center">
             {{ form_widget(form.number) }}
         </section>
     </div>
+</div>
+<div class="panel">
     <div class="panel-heading panel-grey">
-        <a href="#item4" data-toggle="collapse">{{ 'Email'|trans }} <b class="caret"></b></a>
+        <a href="#item4" data-parent="#monaccordeon" data-toggle="collapse">Email <b class="caret"></b></a>
     </div>
     <div id="item4" class="panel-collapse collapse">
         <section class="panel-body text-center">
             {{ form_row(form.email)}}
-            {{ form_row(form.emailConfirm)}}
         </section>
     </div>
+</div>
+<div class="panel">
     <div class="panel-heading panel-grey">
-        <a href="#item5" data-toggle="collapse">{{ 'Information'|trans }} <b class="caret"></b></a>
+        <a href="#item5" data-parent="#monaccordeon" data-toggle="collapse">{{ 'Informations'|trans }} <b class="caret"></b></a>
     </div>
     <div id="item5" class="panel-collapse collapse">
         <section class="panel-body text-center">
-            {{ form_row(form.customers) }}
+            {{ form_widget(form.customers) }}
             <div>
-                <input type="submit" value="{{ 'validate'|trans }}" class="btn btn-success" />
+                <input type="submit" value="{{ 'Validate'|trans }}" class="btn btn-success" />
             </div>
         </section>
+    </div>
+</div>
     </div>
     {{ form_end(form) }}
 {% endblock %}
