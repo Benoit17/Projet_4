@@ -15,7 +15,7 @@ $(document).ready(function() {
 
     // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
     $('.ui-spinner-down').click(function(e) {
-        removeCustomer($container);
+        $('#ticket_customers>div.form-group:last-child').remove();
 
         e.preventDefault(); // évite qu'un # apparaisse dans l'URL
         return false;
@@ -26,15 +26,14 @@ $(document).ready(function() {
         // Dans le contenu de l'attribut « data-prototype », on remplace :
         // - le texte "__name__label__" qu'il contient par le label du champ
         // - le texte "__name__" qu'il contient par le numéro du champ
+        var value = $( ".spinner" ).spinner( 'value' );
+
         var template = $container.attr('data-prototype')
-            .replace(/__name__label__/g, 'Billet n°' + (index+1))
+            .replace(/__name__label__/g, 'Billet n°' + (value))
             .replace(/__name__/g,        index);
 
         // On crée un objet jquery qui contient ce template
         var $prototype = $(template);
-
-        // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
-        addDeleteLink($prototype);
 
         // On ajoute le prototype modifié à la fin de la balise <div>
         $container.append($prototype);
@@ -42,27 +41,4 @@ $(document).ready(function() {
         // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
         index++;
     }
-
-    // La fonction qui ajoute un formulaire CustomerType
-    function removeCustomer($container) {
-        $container.remove($prototype);
-    }
-
-    // La fonction qui ajoute un lien de suppression d'une catégorie
-    function addDeleteLink($prototype) {
-        // Création du lien
-        var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
-
-        // Ajout du lien
-        $prototype.append($deleteLink);
-
-        // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
-        $deleteLink.click(function(e) {
-            $prototype.remove();
-
-            e.preventDefault(); // évite qu'un # apparaisse dans l'URL
-            return false;
-        });
-    }
 });
-

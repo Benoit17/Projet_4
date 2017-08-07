@@ -21,15 +21,13 @@ class BarCodeManagerExtension extends \Twig_Extension
         return $this->barCodeManager->getBarCode();
     }
 
-    // Twig va exécuter cette méthode pour savoir quelle(s) fonction(s) ajoute notre service
     public function getFunctions()
     {
         return array(
             new \Twig_SimpleFunction('getBarCode', array($this, 'BarCodeGenerate')),
         );
     }
-
-    // La méthode getName() identifie votre extension Twig, elle est obligatoire
+    
     public function getName()
     {
         return 'BarCodeManager';
