@@ -26,6 +26,8 @@ class TicketType extends AbstractType
         $builder
             ->add('date', DateTimeType::class, array(
                 'widget' => 'single_text',
+                'html5' => false,
+                'format' => 'dd-MM-y',
                 'attr' => ['class' => 'datepicker']
             ))
             ->add('type', ChoiceType::class, array(

@@ -37,7 +37,7 @@ form :
     number : nombre
 
 final :
-    confirmation : Vous venez de reccevoir un mail de confirmation contenant vos billets.
-    instructions : Suivez les instructions afin de pouvoir utiliser vos billets.
+    confirmation : Vous venez de reccevoir un mail de confirmation contenant votre billet.
+    instructions : Vous devez l'imprimer et vous présenter avec le jour de la visite munie des justificatifs nécessaires (pièces d'identité, carte demandeur d'emploi, étudiant, etc.).
     thanks : Merci pour votre commande, Nous vous souhaitons une agréable visite !
 

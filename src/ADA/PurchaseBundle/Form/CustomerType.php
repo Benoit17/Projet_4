@@ -28,7 +28,8 @@ class CustomerType extends AbstractType
                 'label' => 'form.country'
             ))
             ->add('birthDate', BirthdayType::class, array(
-                'label' => 'form.birthDate'
+                'label' => 'form.birthDate',
+                'format' => 'dd-MM-y'
             ))
             ->add('reduce', CheckboxType::class, array(
                 'label' => 'form.reduce',

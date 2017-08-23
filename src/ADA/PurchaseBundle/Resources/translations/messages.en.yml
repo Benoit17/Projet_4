@@ -8,6 +8,7 @@ form :
     country : country
     birthDate : birth date
     reduce : reduce
+    number : number
 
 rates :
     normal : from 12 years old
@@ -17,5 +18,5 @@ rates :
 
 final :
     confirmation : You have just received a confirmation email containing your tickets.
-    instructions : Follow the instructions to use your tickets.
+    instructions : You must print it and present it with the day of the visit provided with the necessary proofs (identity documents, card jobseeker, student, etc.).
     thanks : Thank you for your order, We wish you a pleasant visit!

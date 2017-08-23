@@ -7,7 +7,7 @@
     <section class="panel-body text-center">
         <p class="ticket">
             email : {{ ticket.email }} </br>
-            date : {{ ticket.date|date('d/m/Y') }} </br>
+            date : {{ ticket.date|date('d-m-Y') }} </br>
             {{ 'form.number'|trans  }} : {{ ticket.number }} </br>
             type :
             {% if (ticket.type == true) %}
@@ -22,7 +22,7 @@
                 {{ 'form.firstName'|trans }} : {{ customer.firstName }} </br>
                 {{ 'form.name'|trans }} : {{ customer.name }} </br>
                 {{ 'form.country'|trans }} : {{ customer.country}} </br>
-                {{ 'form.birthDate'|trans }} : {{ customer.birthDate|date('d/m/Y') }} </br>
+                {{ 'form.birthDate'|trans }} : {{ customer.birthDate|date('d-m-Y') }} </br>
                 {{ 'form.reduce'|trans }} :
                 {% if (customer.reduce) %}
                     oui

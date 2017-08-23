@@ -23,7 +23,7 @@ class ApplicationMailer
 
     public function sendNewNotification(Ticket $ticket)
     {
-        $message = (new \Swift_Message('Hello Email'))
+        $message = (new \Swift_Message('Louvre'))
             ->setFrom('send@example.com')
             ->setTo($ticket->getEmail())
             ->setBody(
