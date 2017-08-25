@@ -39,7 +39,7 @@
         {% if ticket.totalPrice > 0 %}
             <form action="{{ path('ada_purchase_payment') }}" method="POST">
                 <script
-                        class="stripe-button"
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                         data-key="{{ stripe_data_key }}"
                         data-amount="{{ ticket.totalPrice|number_format(2, '.', ',') * 100 }}"
                         data-name="{{ 'Louvre museum'|trans }}"

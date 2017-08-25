@@ -46,16 +46,3 @@ $(document).ready(function() {
         }
     }
 });
-
-/*public function createTicket(Client $client)
-{
-    $iTickets = $client->getNbrTicket()-count($client->getTickets());
-    print_r($iTickets);
-    for ($i = 0; $i < $iTickets; $i++)
-    {
-        $tickets[$i] = new Ticket();
-        $tickets[$i]->setClient($client);
-        $client->getTickets()->add($tickets[$i]);
-    }
-}
-}*/
