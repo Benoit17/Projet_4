@@ -7,7 +7,6 @@ use ADA\PurchaseBundle\Entity\Ticket;
 
 
 class ApplicationMailer
-
 {
     /**
      * @var \Swift_Mailer
@@ -23,15 +22,28 @@ class ApplicationMailer
 
     public function sendNewNotification(Ticket $ticket)
     {
-        $message = (new \Swift_Message('Louvre'))
-            ->setFrom('send@example.com')
-            ->setTo($ticket->getEmail())
-            ->setBody(
-                $this->templating->render('ADAPurchaseBundle:Emails:registration.html.twig', array('ticket' => $ticket)),
-                'text/html'
-            );
+        if(strpos($_SERVER['REQUEST_URI'], 'en') !== false) {
+            $message = (new \Swift_Message('Ticket'))
+                ->setFrom('send@example.com')
+                ->setTo($ticket->getEmail())
+                ->setBody(
+                    $this->templating->render('ADAPurchaseBundle:Emails:registration.html.twig', array('ticket' => $ticket)),
+                    'text/html'
+                );
 
-        $this->mailer->send($message);
+            $this->mailer->send($message);
+        }
+        else{
+            $message = (new \Swift_Message('Billet'))
+                ->setFrom('send@example.com')
+                ->setTo($ticket->getEmail())
+                ->setBody(
+                    $this->templating->render('ADAPurchaseBundle:Emails:registration.html.twig', array('ticket' => $ticket)),
+                    'text/html'
+                );
+
+            $this->mailer->send($message);
+        }
     }
 
 }

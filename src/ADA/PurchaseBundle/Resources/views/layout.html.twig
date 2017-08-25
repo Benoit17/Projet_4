@@ -21,7 +21,7 @@
             <div class="col-sm-8 col-sm-offset-2 navbar navbar-default navbar-inverse">
                 <div class="text-center">
                     {% image 'bundles/adapurchase/css/images/Logo_Louvre.png' %}
-                    <img src="{{ asset_url }}" alt="Logo_Louvre"/>
+                    <a href="{{ path('ada_purchase_index') }}"><img src="{{ asset_url }}" alt="Logo_Louvre"/></a>
                     <h1>{{ 'Official ticketing'|trans }}</h1>
                     {% endimage %}
                 </div>
@@ -30,13 +30,13 @@
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2 panel-red">
                 {% image 'bundles/adapurchase/css/images/Logo_Louvre_Min.png' %}
-                <div><img src="{{ asset_url }}" alt="Logo_Louvre"/>     {{ 'Louvre museum'|trans }}</div>
+                <h3><img src="{{ asset_url }}" alt="Logo_Louvre"/>     {{ 'Louvre museum'|trans }}</h3>
                 {% endimage %}
             </div>
         </div>
         <div class="row">
             <section class="col-sm-8 col-sm-offset-2 information">
-                {{ 'Welcome'|trans }}
+                <h2>{{ 'Welcome'|trans }}</h2>
             </section>
         </div>
         <div class="row">
@@ -78,7 +78,8 @@
         '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'
         'bundles/adapurchase/js/jquery-ui.js'
         'bundles/adapurchase/js/ticket.js'
-        'bundles/adapurchase/js/customer.js' %}
+        'bundles/adapurchase/js/customer.js'
+        'https://checkout.stripe.com/checkout.js'%}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
     </body>

@@ -20,8 +20,11 @@
                 <div class="well">
                     <div class="row">
                         <div class="col-sm-8" style="text-align: center">
+                            {% image 'bundles/adapurchase/css/images/Logo_Louvre.png' %}
+                            <img src="{{ asset_url }}" alt="Logo_Louvre"/>
                             <h3>{{ 'Louvre museum'|trans }}</h3>
                             <p>{{ 'Order'|trans }} n° : {{ ticket.id }}</p>
+                            {% endimage %}
                         </div>
                     </div>
                 </div>
@@ -32,9 +35,9 @@
                         {{ 'form.number'|trans  }} : {{ ticket.number }} </br>
                         type :
                         {% if (ticket.type == true) %}
-                            Journée
+                            {{ 'form.day'|trans  }}
                         {% else %}
-                            Demi-Journée
+                            {{ 'form.halfDay'|trans  }}
                         {% endif %}
                     </p>
                 </div>
@@ -47,9 +50,9 @@
                                 {{ 'form.birthDate'|trans }} : {{ customer.birthDate|date('d/m/Y') }} </br>
                                 {{ 'form.reduce'|trans }} :
                                 {% if (customer.reduce) %}
-                                    oui
+                                    {{ 'yes'|trans }}
                                 {% else %}
-                                    non
+                                    {{ 'no'|trans }}
                                 {% endif %} </br>
                                 {{ 'price'|trans }} : {{ customer.price|number_format(2, '.', ',') }}€
                             </p>

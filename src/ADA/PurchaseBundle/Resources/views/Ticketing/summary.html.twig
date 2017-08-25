@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class="panel-heading panel-grey">
-        {{ 'Summary'|trans }}
+        <p class="p">{{ 'Summary'|trans }}</p>
     </div>
     <section class="panel-body text-center">
         <p class="ticket">
@@ -11,9 +11,9 @@
             {{ 'form.number'|trans  }} : {{ ticket.number }} </br>
             type :
             {% if (ticket.type == true) %}
-                Journée
+                {{ 'form.day'|trans  }}
             {% else %}
-                Demi-Journée
+                {{ 'form.halfDay'|trans  }}
             {% endif %}
         </p>
 
@@ -25,20 +25,21 @@
                 {{ 'form.birthDate'|trans }} : {{ customer.birthDate|date('d-m-Y') }} </br>
                 {{ 'form.reduce'|trans }} :
                 {% if (customer.reduce) %}
-                    oui
+                    {{ 'yes'|trans }}
                 {% else %}
-                    non
+                    {{ 'no'|trans }}
                 {% endif %} </br>
                 {{ 'price'|trans }} : {{ customer.price|number_format(2, '.', ',') }}€
             </p>
         {% endfor %}
 
         <p>Total : {{ ticket.totalPrice|number_format(2, '.', ',') }}€</p>
-
+        <div class="button">
+        <button type="button" class="stripe-button-el" onclick="window.history.back();" style="margin-right: 15px;" ><span style="display: block; min-height: 30px;">{{ 'Edit'|trans }}</span></button>
         {% if ticket.totalPrice > 0 %}
             <form action="{{ path('ada_purchase_payment') }}" method="POST">
                 <script
-                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        class="stripe-button"
                         data-key="{{ stripe_data_key }}"
                         data-amount="{{ ticket.totalPrice|number_format(2, '.', ',') * 100 }}"
                         data-name="{{ 'Louvre museum'|trans }}"
@@ -49,9 +50,8 @@
                         data-currency="eur">
                 </script>
             </form>
-        {% else %}
-            <a href="{{ path('final_command') }}"><button class="btn btn-success btn-sm" >{{ 'button.receive'|trans }}</button></a>
         {% endif %}
+        </div>
     </section>
 {% endblock %}
 

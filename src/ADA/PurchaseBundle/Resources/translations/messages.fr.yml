@@ -1,5 +1,6 @@
 Louvre Museum - Ticketing : Musee du Louvre - Billeterie
 Ticketing : Billetterie
+Ticket : Billet
 Official ticketing : Billetterie officielle
 Louvre museum : Musée du Louvre
 Welcome : Bienvenue
@@ -12,11 +13,15 @@ Informations : Renseignements
 Validate : Valider
 Summary : Récapitulatif
 price : prix
+yes : oui
+no : non
 Payment : Paiement
 Pay : Payer
 Child : Enfant
 Finalization : Finalisation
 Return : Retour
+Order : Commande
+Edit : Modifier
 
 rates :
     normal : à partir de 12 ans

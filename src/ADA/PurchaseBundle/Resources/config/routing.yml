@@ -1,17 +1,12 @@
-ada_purchase_home:
+ada_purchase_index:
     path:      /
     defaults:
         _controller: ADAPurchaseBundle:Ticketing:index
     
-ada_purchase_ticket:
+ada_purchase_ticketing:
     path:      /ticketing
     defaults:
-        _controller: ADAPurchaseBundle:Ticketing:ticket
-
-ada_purchase_test:
-    path:      /ticketing
-    defaults:
-        _controller: ADAPurchaseBundle:Ticketing:test
+        _controller: ADAPurchaseBundle:Ticketing:ticketing
 
 ada_purchase_summary:
     path:      /ticketing/summary

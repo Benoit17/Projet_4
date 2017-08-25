@@ -5,14 +5,14 @@ use ADA\PurchaseBundle\Entity\Customer;
 use PHPUnit\Framework\TestCase;
 
 
-class CustomerTest extends TestCase
+class AgeTest extends TestCase
 {
     public function testGetAge()
     {
-        $age = New Customer();
-        $age->getBirthDate(new \DateTime("1989/03/19"));
-        $result = $age->getAge();
+        $customer = New Customer();
+        $result = $customer->setBirthDate(new \DateTime('19-03-1989'))->getAge();
 
         $this->assertEquals(28, $result);
     }
 }
+

@@ -6,14 +6,14 @@ $(document).ready(function() {
     var index = $container.find(':input').length;
 
     // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
-       $('.ui-spinner-up').click(function(e) {
+    $('.ui-spinner-up').click(function(e) {
         addCustomer($container);
 
         e.preventDefault(); // évite qu'un # apparaisse dans l'URL
         return false;
     });
 
-    // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+    // On supprime le dernier protoype à chaque clic sur le bouton bas.
     $('.ui-spinner-down').click(function(e) {
 
         $('#ticket_customers>div.form-group:last-child').remove();
@@ -46,3 +46,16 @@ $(document).ready(function() {
         }
     }
 });
+
+/*public function createTicket(Client $client)
+{
+    $iTickets = $client->getNbrTicket()-count($client->getTickets());
+    print_r($iTickets);
+    for ($i = 0; $i < $iTickets; $i++)
+    {
+        $tickets[$i] = new Ticket();
+        $tickets[$i]->setClient($client);
+        $client->getTickets()->add($tickets[$i]);
+    }
+}
+}*/

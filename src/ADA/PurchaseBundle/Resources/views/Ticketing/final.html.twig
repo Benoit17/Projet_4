@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class="panel-heading panel-grey">
-        {{ 'Finalization'|trans }}
+        <p class="p">{{ 'Finalization'|trans }}</p>
     </div>
     <section class="panel-body text-center">
         <p>
@@ -10,6 +10,6 @@
         {{ 'final.instructions'|trans }}</br></br>
         {{ 'final.thanks'|trans }}
         </p>
-        <a href="{{ path('ada_purchase_home') }}" class="btn btn-info" title="Return">{{ 'Return'|trans }}</a>
+        <a href="{{ path('ada_purchase_index') }}" class="btn btn-info" title="Return">{{ 'Return'|trans }}</a>
     </section>
 {% endblock %}

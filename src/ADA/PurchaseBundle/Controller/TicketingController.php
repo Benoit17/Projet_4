@@ -22,7 +22,7 @@ class TicketingController extends Controller
         return $this->render('ADAPurchaseBundle:Ticketing:index.html.twig');
     }
 
-    public function ticketAction(Request $request)
+    public function ticketingAction(Request $request)
     {
         $ticket = new Ticket();
         $form = $this->get('form.factory')->create(TicketType::class, $ticket);
@@ -31,7 +31,7 @@ class TicketingController extends Controller
             $this->get('ada_purchase.sessionManager')->setSessionTicket($ticket);
             return $this->redirectToRoute('ada_purchase_summary');
         }
-        return $this->render('ADAPurchaseBundle:Ticketing:ticket.html.twig', array(
+        return $this->render('ADAPurchaseBundle:Ticketing:ticketing.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -39,7 +39,7 @@ class TicketingController extends Controller
     public function summaryAction()
     {
         $ticket = $this->get('ada_purchase.sessionManager')->getSessionTicket();
-        if ($ticket === null) { return $this->redirectToRoute('ada_purchase_home'); }
+        if ($ticket === null) { return $this->redirectToRoute('ada_purchase_index'); }
         $this->get('ada_purchase.priceManager')->getTotalPriceTicket($ticket);
         $this->get('ada_purchase.sessionManager')->setSessionTicket($ticket);
         return $this->render('ADAPurchaseBundle:Ticketing:summary.html.twig', array(
@@ -50,18 +50,19 @@ class TicketingController extends Controller
     public function paymentAction()
     {
         $ticket = $this->get('ada_purchase.sessionManager')->getSessionTicket();
-        if ($ticket === null) { return $this->redirectToRoute('ada_purchase_home'); }
+        if ($ticket === null) { return $this->redirectToRoute('ada_purchase_index'); }
 
         Stripe::setApiKey($this->getParameter('stripe_api_key'));
         $this->get('ada_purchase.sessionManager')->setSessionTicket($ticket);
         return $this->redirectToRoute('ada_purchase_final');
 
     }
+    
 
     public function finalAction()
     {
         $ticket = $this->get('ada_purchase.sessionManager')->getSessionTicket();
-        if ($ticket === null) { return $this->redirectToRoute('ada_purchase_home'); }
+        if ($ticket === null) { return $this->redirectToRoute('ada_purchase_index'); }
         $this->get('ada_purchase.sessionManager')->saveTicket($ticket);
 
         return $this->render('ADAPurchaseBundle:Ticketing:final.html.twig');
