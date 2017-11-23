@@ -1,5 +1,10 @@
 {% extends "ADAPurchaseBundle::layout.html.twig" %}
 
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/adapurchase/css/summary.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
     <div class="panel-heading panel-grey">
         <p class="p">{{ 'Summary'|trans }}</p>
@@ -18,40 +23,103 @@
         </p>
 
         {% for customer in ticket.customers %}
-            <p class="customer">
-                {{ 'form.firstName'|trans }} : {{ customer.firstName }} </br>
-                {{ 'form.name'|trans }} : {{ customer.name }} </br>
-                {{ 'form.country'|trans }} : {{ customer.country}} </br>
-                {{ 'form.birthDate'|trans }} : {{ customer.birthDate|date('d-m-Y') }} </br>
-                {{ 'form.reduce'|trans }} :
-                {% if (customer.reduce) %}
-                    {{ 'yes'|trans }}
-                {% else %}
-                    {{ 'no'|trans }}
-                {% endif %} </br>
-                {{ 'price'|trans }} : {{ customer.price|number_format(2, '.', ',') }}€
-            </p>
+                <p class="customer">
+                    {{ 'form.firstName'|trans }} : {{ customer.firstName }} </br>
+                    {{ 'form.name'|trans }} : {{ customer.name }} </br>
+                    {{ 'form.country'|trans }} : {{ customer.country}} </br>
+                    {{ 'form.birthDate'|trans }} : {{ customer.birthDate|date('d-m-Y') }} </br>
+                    {{ 'form.reduce'|trans }} :
+                    {% if (customer.reduce) %}
+                        {{ 'yes'|trans }}
+                    {% else %}
+                        {{ 'no'|trans }}
+                    {% endif %} </br>
+                    {{ 'price'|trans }} : {{ customer.price|number_format(2, '.', ',') }}€
+                </p>
         {% endfor %}
 
         <p>Total : {{ ticket.totalPrice|number_format(2, '.', ',') }}€</p>
         <div class="button">
-        <button type="button" class="stripe-button-el" onclick="window.history.back();" style="margin-right: 15px;" ><span style="display: block; min-height: 30px;">{{ 'Edit'|trans }}</span></button>
-        {% if ticket.totalPrice > 0 %}
-            <form action="{{ path('ada_purchase_payment') }}" method="POST">
-                <script
-                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                        data-key="{{ stripe_data_key }}"
-                        data-amount="{{ ticket.totalPrice|number_format(2, '.', ',') * 100 }}"
-                        data-name="{{ 'Louvre museum'|trans }}"
-                        data-email="{{ ticket.email }}"
-                        data-description="{{ 'Payment'|trans }}"
-                        data-label="{{ 'Pay'|trans }}"
-                        data-locale="{{ app.request.locale }}"
-                        data-currency="eur">
-                </script>
-            </form>
-        {% endif %}
+            <button type="button" class="btn btn-default" title="Editer" data-toggle="modal" data-target="#commentDialog"><span class="glyphicon glyphicon-edit"></span>
+            </button>
+            <div class="modal fade" id="commentDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body" >
+                                {{ form_start(form) }}
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        {{ form_label(form.date) }}
+                                    </div>
+                                    <div class="col-sm-6">
+                                        {{ form_widget(form.date) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-inline">
+                                        <div class="col-sm-4">
+                                            {{ form_label(form.type) }}
+                                        </div>
+                                        <div class="col-sm-5 type">
+                                            {{ form_widget(form.type) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        {{ form_label(form.number) }}
+                                    </div>
+                                    <div class="col-sm-4">
+                                        {{ form_widget(form.number) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        {{ form_label(form.email) }}
+                                    </div>
+                                    <div class="col-sm-4">
+                                        {{ form_widget(form.email) }}
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        {% for customer in ticket.customers %}
+                                            {#<span class='numéro' >Billet n°1</span>#}
+                                            {{ form_widget(form.customers) }}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <input type="submit" value="{{ 'Validate'|trans }}" class="btn btn-success" />
+                                {{ form_end(form) }}
+                            </div>
+                            <div class="modal-footer" >
+                            </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            {% if ticket.totalPrice > 0 %}
+                <form action="{{ path('ada_purchase_payment') }}" method="POST">
+                    <script
+                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="{{ stripe_data_key }}"
+                            data-amount="{{ ticket.totalPrice|number_format(2, '.', ',') * 100 }}"
+                            data-name="{{ 'Louvre museum'|trans }}"
+                            data-email="{{ ticket.email }}"
+                            data-description="{{ 'Payment'|trans }}"
+                            data-label="{{ 'Pay'|trans }}"
+                            data-locale="{{ app.request.locale }}"
+                            data-currency="eur">
+                    </script>
+                </form>
+            {% endif %}
         </div>
     </section>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('bundles/adapurchase/js/summary.js') }}"></script>
 {% endblock %}
 

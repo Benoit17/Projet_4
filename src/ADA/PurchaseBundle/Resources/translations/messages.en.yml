@@ -1,14 +1,17 @@
 form :
     day : Day
     halfDay : Half-Day
-    email : email
-    confirmEmail : email confirm
-    name : name
-    firstName : first name
-    country : country
-    birthDate : birth date
-    reduce : reduce
-    number : number
+    email : Email
+    confirmEmail : Email confirm
+    name : Name
+    firstName : First name
+    country : Country
+    birthDate : Birth date
+    reduce : Reduce
+    number : Number
+    Day : Day
+    Month : Month
+    Year : Year
 
 rates :
     normal : from 12 years old

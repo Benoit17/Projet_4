@@ -31,3 +31,9 @@ services:
                     - "@ada_purchase.barCodeManager"
                 tags:
                     - { name: twig.extension}
+
+    ada_purchase.validator.number:                              # Le nom du service
+        class: ADA\PurchaseBundle\Validator\NumberValidator     # La classe du service, ici notre validateur déjà créé
+        arguments: ["@request_stack", "@doctrine.orm.entity_manager"] # Les données qu'on injecte au service : la requête et l'EntityManager
+        tags:
+            - { name: validator.constraint_validator, alias: ada_purchase_number }  # C'est avec l'alias qu'on retrouvera le service

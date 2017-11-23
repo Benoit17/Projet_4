@@ -5,85 +5,83 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}{{ 'Louvre Museum - Ticketing'|trans }}{% endblock %}</title>
-        {% stylesheets
-        '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'
-        'bundles/adapurchase/css/ticketing.css'
-        'bundles/adapurchase/css/jquery-ui.css'
-        'bundles/adapurchase/css/jquery-ui.structure.css'
-        'bundles/adapurchase/css/jquery-ui.theme.css'
-        filter='cssrewrite' output='css/compiled/app.css' %}
-        <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
+
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="{{ asset('bundles/adapurchase/css/jquery-ui.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/adapurchase/css/jquery-ui.structure.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/adapurchase/css/jquery-ui.theme.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/adapurchase/css/ticketing.css') }}" rel="stylesheet">
+
+        {% block stylesheets %}{% endblock %}
+
     </head>
 
-    <body class="container">
-        <header class="row">
-            <div class="col-sm-8 col-sm-offset-2 navbar navbar-default navbar-inverse">
-                <div class="text-center">
-                    {% image 'bundles/adapurchase/css/images/Logo_Louvre.png' %}
-                    <a href="{{ path('ada_purchase_index') }}"><img src="{{ asset_url }}" alt="Logo_Louvre"/></a>
-                    <h1>{{ 'Official ticketing'|trans }}</h1>
-                    {% endimage %}
+    <body>
+        <div class="container">
+            <header class="col-sm-8 col-sm-offset-2">
+                <div class="navbar navbar-default navbar-inverse">
+                    <div class="text-center">
+                        {% image 'bundles/adapurchase/css/images/Logo_Louvre.png' %}
+                        <a href="{{ path('ada_purchase_index') }}"><img src="{{ asset_url }}" alt="Logo_Louvre"/></a>
+                        {% endimage %}
+                        <h1>{{ 'Official ticketing'|trans }}</h1>
+                    </div>
                 </div>
-            </div>
-        </header>
-        <div class="row">
-            <div class="col-sm-8 col-sm-offset-2 panel-red">
-                {% image 'bundles/adapurchase/css/images/Logo_Louvre_Min.png' %}
-                <h3><img src="{{ asset_url }}" alt="Logo_Louvre"/>     {{ 'Louvre museum'|trans }}</h3>
-                {% endimage %}
-            </div>
-        </div>
-        <div class="row">
-            <section class="col-sm-8 col-sm-offset-2 information">
-                <h2>{{ 'Welcome'|trans }}</h2>
-            </section>
-        </div>
-        <div class="row">
+                <div class="panel-red">
+                        {% image 'bundles/adapurchase/css/images/Logo_Louvre_Min.png' %}
+                        <h3><img src="{{ asset_url }}" alt="Logo_Louvre"/>     {{ 'Louvre museum'|trans }}</h3>
+                        {% endimage %}
+                </div>
+                <div>
+                    <section class="information">
+                        <h2>{{ 'Welcome'|trans }}</h2>
+                    </section>
+                </div>
+            </header>
+
             <div  class="col-sm-8 col-sm-offset-2">
                 {% block body %}
                 {% endblock %}
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
-                <footer>
-                    <a href="#myModal" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> {{ 'Rates'|trans }}</a><br><br>
-                </footer>
-            </div>
-        </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">{{ 'Rates'|trans }}</h4>
-                    </div>
-                    <div class="modal-body">
-                        <ul>
-                            <li>Normal : {{ 'rates.normal'|trans }} <span class="glyphicon glyphicon-arrow-right"></span> 16€</li>
-                            <li>{{ 'Child'|trans }} : {{ 'rates.child'|trans }} <span class="glyphicon glyphicon-arrow-right"></span> 8€</li>
-                            <li>Senior : {{ 'rates.senior'|trans }} <span class="glyphicon glyphicon-arrow-right"></span> 12€</li>
-                            <li>{{ 'rates.reduce'|trans }})</li>
-                        </ul>
-                        <br>
+            <footer class="col-sm-8 col-sm-offset-2">
+                <a href="#myModal" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> {{ 'Rates'|trans }}</a><br><br>
+            </footer>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel">{{ 'Rates'|trans }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <li>Normal : {{ 'rates.normal'|trans }} <span class="glyphicon glyphicon-arrow-right"></span> 16€</li>
+                                <li>{{ 'Child'|trans }} : {{ 'rates.child'|trans }} <span class="glyphicon glyphicon-arrow-right"></span> 8€</li>
+                                <li>Senior : {{ 'rates.senior'|trans }} <span class="glyphicon glyphicon-arrow-right"></span> 12€</li>
+                                <li>{{ 'rates.reduce'|trans }})</li>
+                            </ul>
+                            <br>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        {% javascripts
-        '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
-        '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'
-        'bundles/adapurchase/js/jquery-ui.js'
-        'bundles/adapurchase/js/ticket.js'
-        'bundles/adapurchase/js/customer.js'
-        'https://checkout.stripe.com/checkout.js'%}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-    </body>
+        <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+        <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
+        <script src='https://checkout.stripe.com/checkout.js'></script>
 
+        <script src="{{asset('bundles/adapurchase/js/jquery-ui.js')}}"></script>
+        <script src="{{asset('bundles/adapurchase/js/ticketing.js')}}"></script>
+        <script src="{{asset('https://checkout.stripe.com/checkout.js')}}"></script>
+
+        {% block javascripts %}
+        {% endblock %}
+    </body>
 </html>
 
 

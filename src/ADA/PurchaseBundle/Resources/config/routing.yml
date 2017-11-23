@@ -8,6 +8,11 @@ ada_purchase_ticketing:
     defaults:
         _controller: ADAPurchaseBundle:Ticketing:ticketing
 
+ada_purchase_date:
+    path:      /ticketing/date
+    defaults:
+        _controller: ADAPurchaseBundle:Ticketing:date
+
 ada_purchase_summary:
     path:      /ticketing/summary
     defaults:

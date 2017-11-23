@@ -5,6 +5,7 @@ namespace ADA\PurchaseBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Ticket
  *
@@ -46,6 +47,7 @@ class Ticket
      * @var int
      *
      * @ORM\Column(name="number", type="integer")
+     *
      */
     private $number;
 

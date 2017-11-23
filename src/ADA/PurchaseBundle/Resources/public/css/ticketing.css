@@ -1,5 +1,11 @@
+/*----------------------------------------------- LAYOUT -----------------------------------------------*/
+
 [class*="col-"]{
     padding: 0px;
+}
+
+.row{
+    margin: 0 !important;
 }
 
 body{
@@ -12,6 +18,7 @@ a, a:hover, a:active, a:visited, a:focus, a:link{
 }
 
 section{
+    padding: 0 !important;
     background: white;
 }
 
@@ -19,7 +26,11 @@ footer{
     background: #222222;
     color: white;
     text-align: justify;
-    padding-top: 15px;
+    padding-top: 15px !important;
+}
+
+h1{
+    margin-bottom: 0 !important;
 }
 
 h2, h3, h4 {
@@ -30,81 +41,23 @@ h3 {
     font-size: medium;
 }
 
-.p{
-    margin: 0px;
-}
-
 .navbar{
-    padding: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     color: white;
     border: 0px;
     border-radius: 0px;
     margin-bottom: 0px;
+}
+
+.padding40{
+    padding: 40px !important
 }
 
 .information{
     text-align: justify;
     font-size: xx-large;
-    padding: 40px;
-}
-
-.panel-red{
-    background: #cc0000;
-    border: 0px;
-    border-radius: 0px;
-    color: white;
-}
-
-.panel-grey{
-    background: #4E4E4E !important;
-    border : #4E4E4E;
-    border-bottom: solid #D6D6D6 2px !important;
-    border-radius: 0px;
-    color: white;
-    margin-bottom: 0px;
-}
-
-.block{
-    display: flex;
-}
-
-.center{
-    margin: auto;
-}
-
-.btn-group{
-    margin-bottom: 15px;
-}
-
-.ticket{
-    border-bottom : solid black 1px;
-    padding-bottom: 15px;
-}
-
-.customer{
-    border-bottom : dotted black 1px;
-    text-align: left;
-    padding-bottom: 15px;
-}
-
-.input-group, .ui-spinner{
-    margin: 50px;
-}
-
-#ticket_type{
-    padding: 20px;
-}
-
-input[readonly]{
-    background: white !important;
-}
-
-.form-control{
-    -webkit-box-shadow: inset 0 0 0 rgba(0,0,0,0) !important;
-}
-
-.form-control{
-    box-shadow: inset 0 0 0 rgba(0,0,0,0) !important;
+    padding: 40px !important;
 }
 
 .panel {
@@ -116,7 +69,149 @@ input[readonly]{
     box-shadow: 0 0px 0px rgba(0,0,0,0) !important;
 }
 
+.panel-red{
+    background: #cc0000;
+    border: 0px;
+    border-radius: 0px;
+    color: white;
+    padding: 2px;
+}
+
+.panel-grey{
+    background: #4E4E4E !important;
+    border : #4E4E4E;
+    border-bottom: solid #D6D6D6 2px !important;
+    border-radius: 0px;
+    color: white;
+    margin-bottom: 0px;
+}
+
+input[readonly]{
+    background: white !important;
+}
+
+.form-control{
+    -webkit-box-shadow: inset 0 0 0 rgba(0,0,0,0) !important;
+    box-shadow: inset 0 0 0 rgba(0,0,0,0) !important;
+}
+
+.glyphicon{
+    color: #cc0000;
+}
+
+.glyphicon-info-sign{
+    color: white !important;
+}
+
+[placeholder] {
+    color: #555 !important;
+}
+
+::-webkit-input-placeholder {
+    color: #555 !important;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: #555 !important;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: #555 !important;
+}
+
+:-ms-input-placeholder {
+    color: #555 !important;
+}
+
+/*----------------------------------------------- TICKETING -----------------------------------------------*/
+
+#ticket_type{
+    padding: 20px;
+}
+
+.type{
+    padding: 0 !important;
+}
+
+.number{
+    margin: 0 !important;
+}
+
+.input-group .form-control:not(:first-child):not(:last-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.email{
+    padding-bottom: 10px;
+}
+
+.btn-success{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-color: #cc0000 !important;
+    background-color: #cc0000 !important;
+}
+
+.label1{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.label2{
+    font-weight: normal !important;
+    color: #555 !important;
+}
+
+.border{
+    border-bottom : dotted black 1px;
+}
+
+.red{
+    text-align: center;
+    color: #cc0000;
+}
+
+#erreur{
+    display: none;
+}
+
+/*----------------------------------------------- SUMMARY -----------------------------------------------*/
+
+#ticket_type{
+    padding: 0 !important;
+}
+
+.p{
+    margin: 0px;
+}
+
 .button{
     display: flex;
     justify-content: center;
+    padding-bottom: 15px;
 }
+
+.ticket{
+    border-bottom : solid black 1px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.customer{
+    border-bottom : dotted black 1px;
+    text-align: left;
+    padding-left: 15px;
+    padding-bottom: 15px;
+}
+
+.block{
+    display: flex;
+    justify-content: space-between;
+}
+
+/*.center{
+    margin: auto;
+}*/

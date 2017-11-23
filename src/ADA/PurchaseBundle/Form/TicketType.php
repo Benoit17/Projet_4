@@ -28,7 +28,10 @@ class TicketType extends AbstractType
                 'widget' => 'single_text',
                 'html5' => false,
                 'format' => 'dd-MM-y',
-                'attr' => ['class' => 'datepicker']
+                "attr" => array(
+                    'class' => 'datepicker',
+                    'placeholder' => 'Date'
+                )
             ))
             ->add('type', ChoiceType::class, array(
                 'choices'  => array(
@@ -41,13 +44,16 @@ class TicketType extends AbstractType
                 },
             ))
             ->add('number', NumberType::class, array(
-                'attr' => ['class'=> 'spinner']
+                "attr" => array(
+                    'class' => 'spinner',
+                    'placeholder' => 'form.number'
+                )
             ))
             ->add('email', RepeatedType::class, array(
                 'type' => EmailType::class,
                 'required' => true,
-                'first_options'  => array('label' => 'form.email'),
-                'second_options' => array('label' => 'form.confirmEmail')
+                'first_options'  => array('attr' => array('placeholder' => 'form.email')),
+                'second_options' => array('attr' => array('placeholder' => 'form.confirmEmail'))
             ))
             ->add('customers', CollectionType::class, array(
                 'entry_type'   => CustomerType::class,

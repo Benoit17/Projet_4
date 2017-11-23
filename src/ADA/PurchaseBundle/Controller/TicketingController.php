@@ -31,19 +31,40 @@ class TicketingController extends Controller
             $this->get('ada_purchase.sessionManager')->setSessionTicket($ticket);
             return $this->redirectToRoute('ada_purchase_summary');
         }
+
         return $this->render('ADAPurchaseBundle:Ticketing:ticketing.html.twig', array(
             'form' => $form->createView(),
         ));
     }
+    
+    public function dateAction(Request $request)
+    {
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('ADAPurchaseBundle:Ticket');
+        
+        $date = $request->request->get('date');
+        $number = $repository->getTicketNumber($date);
 
-    public function summaryAction()
+        return new Response($number);
+    }
+
+    public function summaryAction(Request $request)
     {
         $ticket = $this->get('ada_purchase.sessionManager')->getSessionTicket();
-        if ($ticket === null) { return $this->redirectToRoute('ada_purchase_index'); }
         $this->get('ada_purchase.priceManager')->getTotalPriceTicket($ticket);
-        $this->get('ada_purchase.sessionManager')->setSessionTicket($ticket);
+
+        $form = $this->get('form.factory')->create(TicketType::class, $ticket);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->get('ada_purchase.sessionManager')->setSessionTicket($ticket);
+            return $this->redirectToRoute('ada_purchase_summary');
+        }
+
         return $this->render('ADAPurchaseBundle:Ticketing:summary.html.twig', array(
             'ticket' => $ticket,
+            'form' => $form->createView(),
         ));
     }
 
@@ -57,8 +78,10 @@ class TicketingController extends Controller
         return $this->redirectToRoute('ada_purchase_final');
 
     }
-    
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
     public function finalAction()
     {
         $ticket = $this->get('ada_purchase.sessionManager')->getSessionTicket();

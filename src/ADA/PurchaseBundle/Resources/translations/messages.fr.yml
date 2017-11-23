@@ -32,14 +32,17 @@ rates :
 form :
     day : Journée
     halfDay : Demi-Journée
-    email : email
-    confirmEmail : email confirmation
-    name : nom
-    firstName : prénom
-    country : pays
-    birthDate : date de naissance
-    reduce : réduction
-    number : nombre
+    email : Email
+    confirmEmail : Email confirmation
+    name : Nom
+    firstName : Prénom
+    country : Pays
+    birthDate : Date de naissance
+    reduce : Réduction
+    number : Nombre
+    Day : Jour
+    Month : Mois
+    Year : Année
 
 final :
     confirmation : Vous venez de reccevoir un mail de confirmation contenant votre billet.
