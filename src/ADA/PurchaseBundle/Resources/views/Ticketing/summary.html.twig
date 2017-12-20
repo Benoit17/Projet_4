@@ -11,10 +11,10 @@
     </div>
     <section class="panel-body text-center">
         <p class="ticket">
-            email : {{ ticket.email }} </br>
-            date : {{ ticket.date|date('d-m-Y') }} </br>
+            Email : {{ ticket.email }} </br>
+            {{ 'form.date'|trans  }} : {{ ticket.date|date('d-m-Y') }} </br>
             {{ 'form.number'|trans  }} : {{ ticket.number }} </br>
-            type :
+            Type :
             {% if (ticket.type == true) %}
                 {{ 'form.day'|trans  }}
             {% else %}
@@ -34,7 +34,7 @@
                     {% else %}
                         {{ 'no'|trans }}
                     {% endif %} </br>
-                    {{ 'price'|trans }} : {{ customer.price|number_format(2, '.', ',') }}€
+                    {{ 'Price'|trans }} : {{ customer.price|number_format(2, '.', ',') }}€
                 </p>
         {% endfor %}
 
@@ -119,7 +119,9 @@
         </div>
     </section>
 {% endblock %}
+
 {% block javascripts %}
     <script src="{{ asset('bundles/adapurchase/js/summary.js') }}"></script>
+    <script src="{{ asset('bundles/adapurchase/js/customer.js') }}"></script>
 {% endblock %}
 

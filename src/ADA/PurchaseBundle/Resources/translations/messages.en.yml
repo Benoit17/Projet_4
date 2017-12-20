@@ -12,6 +12,7 @@ form :
     Day : Day
     Month : Month
     Year : Year
+    date : Booking date
 
 rates :
     normal : from 12 years old

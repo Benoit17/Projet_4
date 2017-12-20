@@ -17,7 +17,7 @@ $(document).ready(function() {
     $('.ui-spinner-down').click(function(e) {
 
         $('#ticket_customers>div.form-group:last-child').remove();
-        $('.ui-spinner-up').show();
+        $('.ui-spinner a.ui-spinner-up').attr('class', 'ui-button ui-widget ui-spinner-button ui-spinner-up ui-corner-tr ui-button-icon-only');
 
         e.preventDefault(); // évite qu'un # apparaisse dans l'URL
         return false;
@@ -29,6 +29,11 @@ $(document).ready(function() {
         // - le texte "__name__label__" qu'il contient par le label du champ
         // - le texte "__name__" qu'il contient par le numéro du champ
         var value = $('.spinner').spinner('value');
+        if(document.URL.indexOf("/en/") >= 0) {
+            $billet = 'Ticket';
+        }
+        else
+            $billet = 'Billet';
         var template = $container.attr('data-prototype')
             .replace(/<div class="form-group"><label class="control-label required">__name__label__/g, '<div class="form-group border"><label class="control-label required col-sm-offset-5 label1">__name__label__')
             .replace(/<label class="control-label required" for="ticket_customers___name___name">Name/g, '')
@@ -37,7 +42,7 @@ $(document).ready(function() {
             .replace(/<label class="control-label required">Birth date/g, '<label class="control-label required label2">Birth date')
             .replace(/<label class="control-label required">Date de naissance/g, '<label class="control-label required label2">Date de naissance')
             .replace(/<div class="form-group"><label class="control-label required">__name__label__/g, '<div class="form-horizontal"><label class="control-label required">__name__label__')
-            .replace(/__name__label__/g, 'Billet n°' + (value))
+            .replace(/__name__label__/g, $billet + ' n°' + (value))
             .replace(/__name__/g, index);
 
 
@@ -51,7 +56,7 @@ $(document).ready(function() {
 
         if(value==10){
             $container.append($prototype);
-            $('.ui-spinner-up').hide();
+            $('.ui-spinner a.ui-spinner-up').attr('class', 'ui-button ui-widget ui-spinner-button ui-spinner-up ui-corner-tr ui-button-icon-only ui-state-disabled');
         }
     }
 });

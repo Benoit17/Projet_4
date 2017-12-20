@@ -12,7 +12,7 @@ Email confirm : Email confirmation
 Informations : Renseignements
 Validate : Valider
 Summary : Récapitulatif
-price : prix
+Price : Prix
 yes : oui
 no : non
 Payment : Paiement
@@ -43,6 +43,7 @@ form :
     Day : Jour
     Month : Mois
     Year : Année
+    date : Date de réservation
 
 final :
     confirmation : Vous venez de reccevoir un mail de confirmation contenant votre billet.

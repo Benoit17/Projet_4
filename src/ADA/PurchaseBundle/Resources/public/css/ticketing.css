@@ -178,6 +178,52 @@ input[readonly]{
     display: none;
 }
 
+.form-control:focus{
+    border: 1px solid #ccc;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default{
+    color: #4E4E4E !important;
+}
+
+.ui-button {
+    color: #4E4E4E;
+}
+
+.ui-state-active, .ui-button.ui-state-active:hover, .ui-button:hover{
+    color: #4E4E4E;
+    font-weight: 400;
+}
+
+.radio label {
+    min-width: 150px;
+}
+
+.ui-visual-focus{
+    box-shadow: 0 0 3px 1px rgb(255, 255, 255) !important;
+}
+
+.ui-checkboxradio-radio-label .ui-icon-background {
+    width: 8px;
+    height: 8px;
+    border-width: 4px;
+    border-style: solid;
+}
+
+label.required.ui-checkboxradio-label.ui-corner-all.ui-button.ui-widget.ui-checkboxradio-radio-label.ui-checkboxradio-checked.ui-state-active span.ui-icon-background{
+    border : #cc0000;
+    background-color: #cc0000;
+}
+
+label.required.ui-checkboxradio-label.ui-corner-all.ui-button.ui-widget.ui-checkboxradio-radio-label span.ui-icon-background{
+    border: #eeeeee;
+    background-color: #eeeeee;
+}
+
+#item3 .form-control:focus {
+    border: 0px solid #ccc;
+}
+
 /*----------------------------------------------- SUMMARY -----------------------------------------------*/
 
 #ticket_type{
