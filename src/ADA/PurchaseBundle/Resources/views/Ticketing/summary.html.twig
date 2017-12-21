@@ -54,23 +54,23 @@
                                     <div class="col-sm-4">
                                         {{ form_label(form.date) }}
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         {{ form_widget(form.date) }}
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div id="type" class="row">
                                     <div class="form-inline">
                                         <div class="col-sm-4">
                                             {{ form_label(form.type) }}
                                         </div>
-                                        <div class="col-sm-5 type">
+                                        <div class="col-sm-4 type">
                                             {{ form_widget(form.type) }}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div id="number" class="row">
                                     <div class="col-sm-4">
-                                        {{ form_label(form.number) }}
+                                        {{ form_label(form.number, 'form.number') }}
                                     </div>
                                     <div class="col-sm-4">
                                         {{ form_widget(form.number) }}
@@ -86,9 +86,8 @@
                                 </div>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 col-sm-offset-4">
                                         {% for customer in ticket.customers %}
-                                            {#<span class='numéro' >Billet n°1</span>#}
                                             {{ form_widget(form.customers) }}
                                         {% endfor %}
                                     </div>

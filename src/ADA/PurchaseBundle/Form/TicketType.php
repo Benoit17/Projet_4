@@ -46,7 +46,7 @@ class TicketType extends AbstractType
             ->add('number', NumberType::class, array(
                 "attr" => array(
                     'class' => 'spinner',
-                    'placeholder' => 'form.number'
+                    'placeholder' => 'form.number',
                 )
             ))
             ->add('email', RepeatedType::class, array(

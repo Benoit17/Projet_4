@@ -1,6 +1,14 @@
 $('#ticket_email div label').remove();
 
-$('div.form-group label').remove();
+$('div.form-group label').attr('style', 'display: none;');
+
+$('.checkbox').attr('class', 'checkbox border');
+$('.checkbox label').attr('style', 'margin-bottom: 15px;');
+
+$('.stripe-button-el').attr('class', 'btn btn-success');
+
+$('button span').attr('style', '');
+
 
 if(document.URL.indexOf("/en/") >= 0) {
     $('<p>Ticket n°1</p>').insertBefore('#ticket_customers_0_name');
