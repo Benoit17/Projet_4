@@ -51,18 +51,23 @@
             </div>
             <div id="item4" class="panel-collapse collapse">
                 <section class="panel-body">
-                    <div class="section-mail">
-                        <div class="col-sm-6 col-sm-offset-3 input-group email">
+                    <div class="section">
+                        <div class="input-group email">
                             <div class="input-group-addon">
                                 <i class="glyphicon glyphicon-envelope"></i>
                             </div>
                             {{ form_widget(form.email.first)}}
                         </div>
-                        <div class="col-sm-6 col-sm-offset-3 input-group">
+                        <div class="input-group">
                             <div class="input-group-addon">
                                 <i class="glyphicon glyphicon-envelope"></i>
                             </div>
                             {{ form_widget(form.email.second)}}
+                        </div>
+                        <div>
+                            {{ form_errors(form.email.first)}}
+                            {{ form_errors(form.email.second)}}
+                            {{ form_errors(form.email)}}
                         </div>
                     </div>
                 </section>
@@ -74,7 +79,7 @@
             </div>
             <div id="item5" class="panel-collapse collapse">
                 <section class="panel-body">
-                    <div class="row billet">
+                    <div class="row">
                         <div class="col-sm-8 col-sm-offset-2">
                         {{ form_widget(form.customers) }}
                         </div>

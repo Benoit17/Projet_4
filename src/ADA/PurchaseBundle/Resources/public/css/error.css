@@ -1,0 +1,24 @@
+body{
+    padding-bottom: 0 !important;
+}
+
+header {
+    background-color: white;
+    color: #333;
+    font-size: 13px;
+    height: auto;
+    padding: 0;
+}
+
+section .panel-heading{
+    display: none;
+}
+
+p{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+p a{
+    color: #cc0000 !important;
+}

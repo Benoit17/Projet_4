@@ -4,6 +4,7 @@ namespace ADA\PurchaseBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Customer
@@ -26,6 +27,12 @@ class Customer
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 2,
+     *      minMessage = "Votre nom doit contenir au moins {{ limit }} caractères")
+     *
      */
     private $name;
 
@@ -33,6 +40,11 @@ class Customer
      * @var string
      *
      * @ORM\Column(name="first_name", type="string", length=255)
+     * 
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 2,
+     *      minMessage = "Votre nom doit contenir au moins {{ limit }} caractères")
      */
     private $firstName;
 

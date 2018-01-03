@@ -1,0 +1,17 @@
+{% extends "ADAPurchaseBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/adapurchase/css/error.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <section class="panel-body text-center">
+        <p>Cette page n'existe plus ou bien n'a pas été créée.</br>
+        Nous vous prions de nous excuser pour la gêne occassionnée.</br>
+        Nous vous invitons à revenir sur  <a href="{{ path('ada_purchase_index') }}">la page d'accueil</a>.</p>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/adapurchase/js/error.js') }}"></script>
+{% endblock %}
