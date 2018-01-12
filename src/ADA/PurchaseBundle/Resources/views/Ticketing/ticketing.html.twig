@@ -10,12 +10,16 @@
             </div>
             <div id="item1" class="panel-collapse collapse in">
                 <section class="panel-body">
-                    <div id="Date" class="section input-group">
-                        <div class="input-group-addon">
-                            <i class="glyphicon glyphicon-calendar"></i>
+                    <div id="Date" class="section">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </div>
+                            {{ form_widget(form.date) }}
                         </div>
-                        {{ form_widget(form.date) }}
-                        <div class="erreur red">
+                        <div class="erreur red"></div>
+                        <div>
+                            {{ form_errors(form.date) }}
                         </div>
                     </div>
                 </section>
@@ -28,7 +32,12 @@
             <div id="item2" class="panel-collapse collapse">
                 <section class="panel-body">
                     <div class="section">
+                        <div>
                         {{ form_widget(form.type) }}
+                        </div>
+                        <div style="text-align: center;">
+                        {{ form_errors(form.type)}}
+                        </div>
                     </div>
                 </section>
             </div>
@@ -41,6 +50,7 @@
                 <section class="panel-body text-center">
                     <div class="section">
                         {{ form_widget(form.number) }}
+                        {{ form_errors(form.number)}}
                     </div>
                 </section>
             </div>
@@ -84,7 +94,7 @@
                         {{ form_widget(form.customers) }}
                         </div>
                         <div class="col-sm-2 col-sm-offset-5 red">
-                        <input type="submit" value="{{ 'Validate'|trans }}" class="btn btn-success" />
+                            {{ form_widget(form.save, {'label': 'Validate', 'attr': {'class': 'btn btn-success', 'url': path('ada_purchase_summary')}}) }}
                         </div>
                     </div>
                 </section>

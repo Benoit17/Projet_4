@@ -15,7 +15,7 @@ $(document).ready(function() {
 
     // On supprime le dernier protoype à chaque clic sur le bouton bas.
     $('.ui-spinner-down').click(function(e) {
-
+        index--;
         $('#ticket_customers>div.form-group:last-child').remove();
         $('.ui-spinner a.ui-spinner-up').attr('class', 'ui-button ui-widget ui-spinner-button ui-spinner-up ui-corner-tr ui-button-icon-only');
 
@@ -46,7 +46,6 @@ $(document).ready(function() {
             .replace(/__name__/g, index);
 
 
-
         // On crée un objet jquery qui contient ce template
         var $prototype = $(template);
 
@@ -59,4 +58,5 @@ $(document).ready(function() {
             $('.ui-spinner a.ui-spinner-up').attr('class', 'ui-button ui-widget ui-spinner-button ui-spinner-up ui-corner-tr ui-button-icon-only ui-state-disabled');
         }
     }
+
 });

@@ -282,3 +282,11 @@ label.required.ui-checkboxradio-label.ui-corner-all.ui-button.ui-widget.ui-check
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.has-error .form-control{
+    border-color: #ccc !important;
+}
+
+.help-block{
+    color: #a94442 !important;
+}

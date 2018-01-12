@@ -216,7 +216,7 @@ class Ticket
 
     /**
      * Get customers
-     *
+     * @Assert\Valid()
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getCustomers()

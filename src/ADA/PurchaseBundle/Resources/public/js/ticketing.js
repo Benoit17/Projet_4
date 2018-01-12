@@ -49,47 +49,35 @@ jQuery(function($){
 
 $('#ticket_number').attr('readonly', 'readonly');
 
-//Ids des input text et erreurs a afficher
+$(document).ready(function(){
+    $('div#item1 span').attr('id', '1');
+    $('div#item2 span').attr('id', '2');
+    $('div#item3 span').attr('id', '3');
+    $('div#item4 span').attr('id', '4');
+    $('div#item5 span').attr('id', '5');
+    $('div#item46 span').attr('id', '6');
 
-$(function(){
-    $('.btn').click(function(){
-        $('input[id="ticket_date"]').each(function(){
-            //Si le input est vide
-            if($(this).val()===""){
-                $('a[href="#item1"]').trigger('click');
-            }
-        });
-
-        $('input[name="ticket[type]"]:checked').each(function(){
-            //Si le input est vide
-            if($(this).val()===""){
-                $('a[href="#item2"]').trigger('click');
-            }
-        });
-
-        $('input[id="ticket_number"]').each(function(){
-            //Si le input est vide
-            if($(this).val()===""){
-                $('a[href="#item3"]').trigger('click');
-            }
-        });
-
-        $('input[id="ticket_email_first"]').each(function(){
-            //Si le input est vide
-            if($(this).val()===""){
-                $('a[href="#item4"]').trigger('click');
-            }
-        });
-
-        $('input[id="ticket_email_second"]').each(function(){
-            //Si le input est vide
-            if($(this).val()===""){
-                $('a[href="#item4"]').trigger('click');
-            }
-        });
-    });
+    if($("#1").hasClass('help-block')){
+        $('a[href="#item1"]').trigger('click');
+    }
+    if($("#2").hasClass('help-block')){
+        $('a[href="#item2"]').trigger('click');
+    }
+    if($("#3").hasClass('help-block')){
+        $('a[href="#item3"]').trigger('click');
+    }
+    if($("#4").hasClass('help-block')){
+        $('a[href="#item4"]').trigger('click');
+    }
+    if($("#5").hasClass('help-block')){
+        $('a[href="#item5"]').trigger('click');
+    }
+    if($("#6").hasClass('help-block')){
+        $('a[href="#item6"]').trigger('click');
+    }
 });
 
+//Enlève lka validation des erreurs par le navigateur
 $('form[name="ticket"]').attr('novalidate', 'novalidate');
 
 $('.checkbox').attr('class', 'checkbox border');
@@ -122,8 +110,6 @@ if(document.URL.indexOf("/fr/") >= 0) {
     $('<p>Billet n°9</p>').insertBefore('#ticket_customers_8_name');
     $('<p>Billet n°10</p>').insertBefore('#ticket_customers_9_name');
 }
-
-
 
 
 

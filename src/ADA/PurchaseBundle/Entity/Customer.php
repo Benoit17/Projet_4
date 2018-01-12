@@ -32,6 +32,11 @@ class Customer
      * @Assert\Length(
      *      min = 2,
      *      minMessage = "Votre nom doit contenir au moins {{ limit }} caractères")
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Votre nom ne doit pas contenir de nombre"
+     * )
      *
      */
     private $name;
@@ -44,7 +49,12 @@ class Customer
      * @Assert\NotBlank()
      * @Assert\Length(
      *      min = 2,
-     *      minMessage = "Votre nom doit contenir au moins {{ limit }} caractères")
+     *      minMessage = "Votre prénom doit contenir au moins {{ limit }} caractères")
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Votre prénom ne doit pas contenir de nombre"
+     * )
      */
     private $firstName;
 

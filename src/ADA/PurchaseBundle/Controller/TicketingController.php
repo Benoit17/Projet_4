@@ -12,6 +12,7 @@ use ADA\PurchaseBundle\Form\CustomerType;
 use Stripe\Charge;
 use Stripe\Error\Card;
 use Stripe\Stripe;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 
 
@@ -20,6 +21,19 @@ class TicketingController extends Controller
     public function indexAction()
     {
         return $this->render('ADAPurchaseBundle:Ticketing:index.html.twig');
+    }
+
+    public function dateAction(Request $request)
+    {
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('ADAPurchaseBundle:Ticket');
+
+        $date = $request->request->get('date');
+        $number = $repository->getTicketNumber($date);
+
+        return new Response($number);
     }
 
     public function ticketingAction(Request $request)
@@ -36,36 +50,35 @@ class TicketingController extends Controller
             'form' => $form->createView(),
         ));
     }
-    
-    public function dateAction(Request $request)
-    {
-        $repository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('ADAPurchaseBundle:Ticket');
-        
-        $date = $request->request->get('date');
-        $number = $repository->getTicketNumber($date);
 
-        return new Response($number);
-    }
-
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     */
     public function summaryAction(Request $request)
     {
-        $ticket = $this->get('ada_purchase.sessionManager')->getSessionTicket();
-        $this->get('ada_purchase.priceManager')->getTotalPriceTicket($ticket);
 
-        $form = $this->get('form.factory')->create(TicketType::class, $ticket);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->get('ada_purchase.sessionManager')->setSessionTicket($ticket);
-            return $this->redirectToRoute('ada_purchase_summary');
-        }
+            $ticket = $this->get('ada_purchase.sessionManager')->getSessionTicket();
+            $this->get('ada_purchase.priceManager')->getTotalPriceTicket($ticket);
 
-        return $this->render('ADAPurchaseBundle:Ticketing:summary.html.twig', array(
-            'ticket' => $ticket,
-            'form' => $form->createView(),
-        ));
+            $form = $this->get('form.factory')->create(TicketType::class, $ticket);
+            $form->handleRequest($request);
+            if ($form->isSubmitted()) {
+
+                // récupère le résultat de la validation
+                $validation = $this->get('ada_purchase.editManager')->validateTicket($ticket);
+                // si la validation n'est pas ok on renvoie les erreurs du validateur
+                if($validation !== true) {
+                    return new Response($validation,500);
+                }
+                return $this->redirectToRoute('ada_purchase_summary');
+            }
+            return $this->render('ADAPurchaseBundle:Ticketing:summary.html.twig', array(
+                'ticket' => $ticket,
+                'form' => $form->createView(),
+            ));
+
     }
 
     public function paymentAction()
