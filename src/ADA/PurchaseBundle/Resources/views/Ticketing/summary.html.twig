@@ -12,10 +12,10 @@
     </div>
     <section class="panel-body text-center">
         <p class="ticket">
-            Email : {{ ticket.email }} </br>
-            {{ 'form.date'|trans  }} : {{ ticket.date|date('d-m-Y') }} </br>
-            {{ 'form.number'|trans  }} : {{ ticket.number }} </br>
-            Type :
+            <span>Email</span> : {{ ticket.email }} </br>
+            <span>{{ 'form.date'|trans  }}</span> : {{ ticket.date|date('d-m-Y') }} </br>
+            <span>{{ 'form.number'|trans  }}</span> : {{ ticket.number }} </br>
+            <span>Type</span> :
             {% if (ticket.type == true) %}
                 {{ 'form.day'|trans  }}
             {% else %}
@@ -25,23 +25,23 @@
 
         {% for customer in ticket.customers %}
                 <p class="customer">
-                    {{ 'form.firstName'|trans }} : {{ customer.firstName }} </br>
-                    {{ 'form.name'|trans }} : {{ customer.name }} </br>
-                    {{ 'form.country'|trans }} : {{ customer.country}} </br>
-                    {{ 'form.birthDate'|trans }} : {{ customer.birthDate|date('d-m-Y') }} </br>
-                    {{ 'form.reduce'|trans }} :
+                    <span>{{ 'form.firstName'|trans }}</span> : {{ customer.firstName }} </br>
+                    <span>{{ 'form.name'|trans }}</span> : {{ customer.name }} </br>
+                    <span>{{ 'form.country'|trans }}</span> : {{ customer.country}} </br>
+                    <span>{{ 'form.birthDate'|trans }}</span> : {{ customer.birthDate|date('d-m-Y') }} </br>
+                    <span>{{ 'form.reduce'|trans }}</span> :
                     {% if (customer.reduce) %}
                         {{ 'yes'|trans }}
                     {% else %}
                         {{ 'no'|trans }}
                     {% endif %} </br>
-                    {{ 'Price'|trans }} : {{ customer.price|number_format(2, '.', ',') }}€
+                    <span>{{ 'Price'|trans }}</span> : {{ customer.price|number_format(2, '.', ',') }}€
                 </p>
         {% endfor %}
 
-        <p>Total : {{ ticket.totalPrice|number_format(2, '.', ',') }}€</p>
+        <p><span>Total</span> : {{ ticket.totalPrice|number_format(2, '.', ',') }}€</p>
         <div class="button">
-            <button type="button" class="btn btn-default" title="Editer" data-toggle="modal" data-target="#commentDialog"><span class="glyphicon glyphicon-edit"></span>
+            <button type="button" class="btn btn-default" title="Editer" data-toggle="modal" data-target="#commentDialog">{{ 'Edit'|trans }}
             </button>
             {#<a class="btn btn-default btn-connexion-modal" href="{{ path("ada_purchase_edit") }}" data-toggle="modal" data-target="#connexionModal"><span class="glyphicon glyphicon-edit"></span></a>#}
             <div class="modal fade" id="commentDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
@@ -59,11 +59,16 @@
                                         {{ form_label(form.date) }}
                                     </div>
                                     <div class="col-sm-4">
-                                        {{ form_widget(form.date) }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="glyphicon glyphicon-calendar"></i>
+                                            </div>
+                                            {{ form_widget(form.date) }}
+                                        </div>
                                         {{ form_errors(form.date) }}
                                     </div>
                                 </div>
-                                <div id="type" class="row">
+                                <div id="type" class="row" style="margin-top: 15px !important; margin-bottom:15px !important;">
                                     <div class="form-inline">
                                         <div class="col-sm-4">
                                             {{ form_label(form.type) }}
@@ -82,13 +87,28 @@
                                         {{ form_widget(form.number) }}
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" style="margin-top: 15px !important;">
                                     <div class="col-sm-4">
                                         {{ form_label(form.email) }}
                                     </div>
                                     <div class="col-sm-4">
-                                        {{ form_widget(form.email) }}
-                                        {{ form_errors(form.email) }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="glyphicon glyphicon-envelope"></i>
+                                            </div>
+                                            {{ form_widget(form.email.first)}}
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="glyphicon glyphicon-envelope"></i>
+                                            </div>
+                                            {{ form_widget(form.email.second)}}
+                                        </div>
+                                        <div>
+                                            {{ form_errors(form.email.first)}}
+                                            {{ form_errors(form.email.second)}}
+                                            {{ form_errors(form.email)}}
+                                        </div>
                                     </div>
                                 </div>
                                 <hr>

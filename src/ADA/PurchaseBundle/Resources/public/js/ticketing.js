@@ -21,12 +21,22 @@ $('.datepicker').datepicker({
             type: 'post',
             success: function (output) {
                 if (output > 4) {
-                    /*alert('Il y a trop de réservation pour cette date');*/
-                    $('input#ticket_date').val('Date');
-                    $('#Date').after('<p class="red">Il ya trop de réservation pour cette date. Veuillez en choisir une autre.</p>');
-                    $('input#ticket_date').click(function() {
-                        $('p.red').hide();
-                    });
+                    // /*alert('Il y a trop de réservation pour cette date');*/
+
+                    if(document.URL.indexOf("/en/") >= 0) {
+                        $('input#ticket_date').val('Date');
+                        $('div#Date .input-group').after('<span class="help-block"><ul class="list-unstyled"><li><span class="glyphicon glyphicon-exclamation-sign"></span> There is too much reservation for this date. Please choose another one.</li>');
+                        $('input#ticket_date').click(function() {
+                            $('span.help-block').hide();
+                        });
+                    }
+                    else{
+                        $('input#ticket_date').val('Date');
+                        $('div#Date .input-group').after('<span class="help-block"><ul class="list-unstyled"><li><span class="glyphicon glyphicon-exclamation-sign"></span> Il ya trop de réservation pour cette date. Veuillez en choisir une autre.</li>');
+                        $('input#ticket_date').click(function() {
+                            $('span.help-block').hide();
+                        });
+                    }
                 }
             }
         });
@@ -51,11 +61,11 @@ $('#ticket_number').attr('readonly', 'readonly');
 
 $(document).ready(function(){
     $('div#item1 span').attr('id', '1');
-    $('div#item2 span').attr('id', '2');
+    $('div#test span').attr('id', '2');
     $('div#item3 span').attr('id', '3');
     $('div#item4 span').attr('id', '4');
     $('div#item5 span').attr('id', '5');
-    $('div#item46 span').attr('id', '6');
+    $('div#item6 span').attr('id', '6');
 
     if($("#1").hasClass('help-block')){
         $('a[href="#item1"]').trigger('click');
@@ -79,9 +89,6 @@ $(document).ready(function(){
 
 //Enlève lka validation des erreurs par le navigateur
 $('form[name="ticket"]').attr('novalidate', 'novalidate');
-
-$('.checkbox').attr('class', 'checkbox border');
-$('.checkbox label').attr('style', 'margin-bottom: 15px;');
 
 $('div.form-group label').attr('style', 'display: none;');
 

@@ -10,54 +10,49 @@
     filter='cssrewrite' output='css/compiled/app.css' %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
+    <link href="{{ absolute_url(asset('bundles/adapurchase/css/summary.css')) }}" rel="stylesheet">
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="well">
-                    <div class="row">
-                        <div class="col-sm-8" style="text-align: center">
-                            <img src="{{ absolute_url(asset('bundles/adapurchase/css/images/Logo_Louvre.png')) }}" alt="Logo_Louvre"/>
-                            <h3>{{ 'Louvre museum'|trans }}</h3>
-                            <p>{{ 'Order'|trans }} n° : {{ ticket.id }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="well">
-                    <p class="ticket">
-                        email : {{ ticket.email }} </br>
-                        date : {{ ticket.date|date('d/m/Y') }} </br>
-                        {{ 'form.number'|trans  }} : {{ ticket.number }} </br>
-                        type :
-                        {% if (ticket.type == true) %}
-                            {{ 'form.day'|trans  }}
-                        {% else %}
-                            {{ 'form.halfDay'|trans  }}
-                        {% endif %}
-                    </p>
-                </div>
-                <div class="well">
-                        {% for customer in ticket.Customers %}
-                            <p class="customer">
-                                {{ 'form.firstName'|trans }} : {{ customer.firstName }} </br>
-                                {{ 'form.name'|trans }} : {{ customer.name }} </br>
-                                {{ 'form.country'|trans }} : {{ customer.country}} </br>
-                                {{ 'form.birthDate'|trans }} : {{ customer.birthDate|date('d/m/Y') }} </br>
-                                {{ 'form.reduce'|trans }} :
+    <div>
+        <div>
+            <div style="text-align: center;">
+                <img src="{{ absolute_url(asset('bundles/adapurchase/css/images/Logo_Louvre.png')) }}" alt="Logo_Louvre"/>
+                <h3>{{ 'Louvre museum'|trans }}</h3>
+                <p style="width: 300px; margin: auto;">
+                    <span style="font-weight: bold;">{{ 'Order'|trans }} n°</span> : {{ ticket.id }} </br>
+                    <span style="font-weight: bold;">Email</span> : {{ ticket.email }} </br>
+                    <span style="font-weight: bold;">Date</span> : {{ ticket.date|date('d/m/Y') }} </br>
+                    <span style="font-weight: bold;">{{ 'form.number'|trans  }}</span> : {{ ticket.number }} </br>
+                    <span style="font-weight: bold;">Type</span> :
+                    {% if (ticket.type == true) %}
+                        {{ 'form.day'|trans  }}
+                    {% else %}
+                        {{ 'form.halfDay'|trans  }}
+                    {% endif %}
+                </p>
+            </div>
+            <div style="text-align: center;">
+                    {% for customer in ticket.Customers %}
+                        <div style="display: inline-block; text-align: left; border: 1px dashed black; width:300px; margin: 15px; padding: 10px;">
+                            <p>
+                                <span style="font-weight: bold;">{{ 'form.firstName'|trans }}</span> : {{ customer.firstName }} </br>
+                                <span style="font-weight: bold;">{{ 'form.name'|trans }}</span> : {{ customer.name }} </br>
+                                <span style="font-weight: bold;">{{ 'form.country'|trans }}</span> : {{ customer.country}} </br>
+                                <span style="font-weight: bold;">{{ 'form.birthDate'|trans }}</span> : {{ customer.birthDate|date('d/m/Y') }} </br>
+                                <span style="font-weight: bold;">{{ 'form.reduce'|trans }}</span> :
                                 {% if (customer.reduce) %}
                                     {{ 'yes'|trans }}
                                 {% else %}
                                     {{ 'no'|trans }}
                                 {% endif %} </br>
-                                {{ 'price'|trans }} : {{ customer.price|number_format(2, '.', ',') }}€
+                                <span style="font-weight: bold;">{{ 'Price'|trans }}</span> : {{ customer.price|number_format(2, '.', ',') }}€
                             </p>
-                        {% endfor %}
-                    <br />
-                    <p>Total : {{ ticket.totalPrice|number_format(2, '.', ',') }}€</p>
-                </div>
+                        </div>
+                    {% endfor %}
+                <br />
+                <div style="margin-bottom: 20px;"><span style="font-weight: bold;">Total</span> : {{ ticket.totalPrice|number_format(2, '.', ',') }}€</div>
             </div>
         </div>
         <div style="text-align: center;">{{ getBarCode() }}</div>

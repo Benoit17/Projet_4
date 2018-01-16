@@ -28,14 +28,19 @@ class Customer
      *
      * @ORM\Column(name="name", type="string", length=255)
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message = "form.empty"
+     * )
+     * 
      * @Assert\Length(
      *      min = 2,
-     *      minMessage = "Votre nom doit contenir au moins {{ limit }} caractères")
+     *      minMessage ="form.nameMin"
+     * )
+     *
      * @Assert\Regex(
-     *     pattern="/\d/",
-     *     match=false,
-     *     message="Votre nom ne doit pas contenir de nombre"
+     *     pattern = "/\d/",
+     *     match = false,
+     *     message = "form.nameNumber"
      * )
      *
      */
@@ -45,16 +50,20 @@ class Customer
      * @var string
      *
      * @ORM\Column(name="first_name", type="string", length=255)
-     * 
-     * @Assert\NotBlank()
+     *
+     * @Assert\NotBlank(
+     *     message = "form.empty"
+     * )
      * @Assert\Length(
      *      min = 2,
-     *      minMessage = "Votre prénom doit contenir au moins {{ limit }} caractères")
-     * @Assert\Regex(
-     *     pattern="/\d/",
-     *     match=false,
-     *     message="Votre prénom ne doit pas contenir de nombre"
+     *      minMessage = "form.firstnameMin"
      * )
+     * @Assert\Regex(
+     *     pattern = "/\d/",
+     *     match = false,
+     *     message = "form.firstnameNumber"
+     * )
+     * 
      */
     private $firstName;
 
@@ -62,6 +71,11 @@ class Customer
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
+     *
+     * @Assert\NotBlank(
+     *     message = "form.empty"
+     * )
+     *
      */
     private $country;
 
@@ -69,6 +83,11 @@ class Customer
      * @var \DateTime
      *
      * @ORM\Column(name="birth_date", type="date")
+     *
+     * @Assert\NotBlank(
+     *     message = "form.empty"
+     * )
+     * 
      */
     private $birthDate;
 
@@ -76,6 +95,7 @@ class Customer
      * @var bool
      *
      * @ORM\Column(name="reduce", type="boolean")
+     * 
      */
     private $reduce;
 

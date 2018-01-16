@@ -38,10 +38,6 @@ class TicketType extends AbstractType
                     'class' => 'datepicker',
                     'placeholder' => 'Date'
                 ),
-                'constraints' => array(
-                    new NotBlank(array('message' => 'form.empty')),
-                    new Date(array('message' => 'Cette valeur n\'est pas valide')),
-                )
             ))
             ->add('type', ChoiceType::class, array(
                 'choices'  => array(
@@ -52,9 +48,6 @@ class TicketType extends AbstractType
                     // adds a class like attending_yes, attending_no, etc
                     return ['class' => 'checkboxradio'];
                 },
-                'constraints' => array(
-                    new NotNull(array('message' => 'Veuillez choisir un type')),
-                )
             ))
             ->add('number', NumberType::class, array(
                 "attr" => array(
@@ -67,20 +60,12 @@ class TicketType extends AbstractType
                 'required' => true,
                 'first_options'  => array('attr' => array('placeholder' => 'form.email')),
                 'second_options' => array('attr' => array('placeholder' => 'form.confirmEmail')),
-                'constraints' => array(
-                    new NotBlank(array('message' => 'form.empty')),
-                    new Email(array(
-                        'message' => 'L\'adresse email \'{{ value }}\' n\'est pas une adresse email valide.',
-                        'checkMX' => true)),
-                )
             ))
             ->add('customers', CollectionType::class, array(
                 'entry_type'   => CustomerType::class,
                 'allow_add'    => true,
                 'allow_delete' => true,
-                'constraints' => array(
-                    new Valid(),
-                )
+                
             ))
             ->add('save',      SubmitType::class);
     }

@@ -31,8 +31,12 @@
 .customer{
     border-bottom : dotted black 1px;
     text-align: left;
-    padding-left: 15px;
+    padding-left: 30px;
     padding-bottom: 15px;
+}
+
+p span{
+    font-weight: bold;
 }
 
 .block{
@@ -47,10 +51,6 @@
 
 form[name="ticket"] .row{
     margin-bottom: 20px !important;
-}
-
-.radio:first-child{
-    margin-bottom: 5px;
 }
 
 #number .form-control:focus{
@@ -81,7 +81,87 @@ form[name="ticket"] .row{
      margin-left: 0 !important;
 }
 
-.btn-success{
-    margin-top: 0;
+.btn-success {
+    margin-top: 0px;
     margin-bottom: 0;
+    width: 100px;
+}
+
+button#ticket_save {
+    margin-top: 20px !important;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open>.dropdown-toggle.btn-success {
+    border-color: transparent;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open>.dropdown-toggle.btn-default {
+    background-color: transparent;
+}
+
+.modal-header{
+    border-bottom: 0 !important;
+}
+
+.modal-content  {
+    border-radius: 0px !important;
+}
+
+.z{
+    z-index: 1050 !important;
+}
+
+.btn-default{
+    color: #cc0000 !important;
+    border-radius: 0;
+    box-shadow: 6px 8px 10px #DCDCDB !important;
+    width: 100px
+}
+
+.col-sm-4 .input-group:nth-child(2){
+    margin-top: 15px !important;
+}
+
+.radio{
+    margin: 0 !important;
+}
+
+.modal-footer {
+    border-top: 0 !important;
+}
+
+hr {
+    margin-top: 40px !important;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+@media (max-width: 768px) {
+    .modal-dialog{
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    label.control-label{
+        margin-top: 20px;
+    }
+
+    .input-group{
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .form-control{
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .ui-spinner{
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

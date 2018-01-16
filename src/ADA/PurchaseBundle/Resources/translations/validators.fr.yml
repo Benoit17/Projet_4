@@ -1,2 +1,9 @@
 form:
+    date : Cette valeur n'est pas valide.
+    type : Veuillez choisir un type.
+    mail : L'adresse email {{ value }} n'est pas valide.
     empty : Veuillez renseigner ce champ.
+    nameMin : Votre nom doit contenir au moins {{ limit }} caractères.
+    nameNumber : Votre nom ne doit pas contenir de nombre.
+    firstnameMin : Votre prénom doit contenir au moins {{ limit }} caractères.
+    firstnameNumber : Votre prénom ne doit pas contenir de nombre.

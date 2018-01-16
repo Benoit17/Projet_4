@@ -8,20 +8,6 @@
     margin: 0 !important;
 }
 
-
-@media (max-width: 420px){
-    .billet{
-        margin: 15px !important;
-    }
-}
-
-@media (min-width: 420px) and (max-width: 992px){
-    .billet{
-        margin-left: 100px !important;
-        margin-right: 100px !important;
-    }
-}
-
 body{
     background: #331107;
 }
@@ -70,6 +56,12 @@ h3 {
 
 .section{
     max-width: 350px;
+    margin: auto;
+    padding: 40px !important
+}
+
+#Date{
+    max-width: 400px;
     margin: auto;
     padding: 40px !important
 }
@@ -149,14 +141,137 @@ input[readonly]{
     color: #555 !important;
 }
 
+.has-error .form-control{
+    border-color: #ccc !important;
+}
+
+.help-block{
+    color: #a94442 !important;
+}
+
+.form-control{
+    height: 50px;
+    border-radius: 0 !important;
+}
+
+.input-group{
+    box-shadow: 1px 1px 20px #DCDCDC !important;
+}
+
 /*----------------------------------------------- TICKETING -----------------------------------------------*/
 
-#ticket_type{
-    padding: 20px;
+/*#ticket_type{*/
+    /*padding: 20px;*/
+/*}*/
+
+#ticket_customers p{
+    font-weight: 700;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.btn-success {
+    background-color: #cc0000 !important;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 1px solid transparent;
+    border-radius: 0;
+    box-shadow: 6px 8px 10px #DCDCDB !important;
+}
+
+.input-group-addon:first-child{
+    border-top-right-radius : 0 !important;
+    border-top-left-radius : 0 !important;
+    border-bottom-right-radius : 0 !important;
+    border-bottom-left-radius : 0 !important;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open>.dropdown-toggle.btn-success {
+    color: #fff;
+    background-color: #cc0000 !important;
+    border-color: #cc0000 !important;
+}
+
+/*------------------------ DATE -------------------------*/
+
+#ui-datepicker-div.ui-corner-all{
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.ui-datepicker-header.ui-corner-all{
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+#Date .input-group{
+    width: 94%;
+    margin: auto;
+}
+
+/*------------------------ TYPE -------------------------*/
+
+.radio{
+    margin: 0 !important;
+}
+
+.radio:nth-child(2){
+    margin-top: 15px !important;
+}
+
+label.ui-corner-all{
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+label.ui-button{
+    padding: .9em .1em .9em .1em;
+    background: none !important;
+    height: 50px;
+    border-radius: 0 !important;
+    box-shadow: 1px 1px 20px #DCDCDC !important;
+}
+
+/*------------------------ NUMBER -------------------------*/
+
+.ui-spinner{
+    height: 50px !important;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 0 !important;
+    box-shadow: 1px 1px 20px #DCDCDC !important;
+}
+
+.ui-spinner-input{
+    margin: .6em !important;
 }
 
 .number{
     margin: 0 !important;
+}
+
+#item3 .form-control:focus {
+    border: 0 solid #ccc;
+}
+
+.ui-spinner input{
+    height: 30px;
+}
+
+.ui-corner-tr {
+    border-top-right-radius: 0 !important;
+}
+
+.ui-corner-br {
+    border-bottom-right-radius: 0 !important;
 }
 
 .input-group .form-control:not(:first-child):not(:last-child) {
@@ -166,19 +281,13 @@ input[readonly]{
     border-bottom-right-radius: 4px;
 }
 
-.email{
-    padding-bottom: 10px;
-}
-
-.btn-success{
-    margin-top: 15px;
-    margin-bottom: 15px;
-    border-color: #cc0000 !important;
-    background-color: #cc0000 !important;
+.section .input-group:nth-child(2){
+    margin-top: 15px !important;
 }
 
 .label1{
-    margin-top: 10px;
+    width: 100%;
+    text-align: center;
     margin-bottom: 20px;
 }
 
@@ -188,6 +297,7 @@ input[readonly]{
 }
 
 .border{
+    margin-top: 5px;
     border-bottom : dotted black 1px;
 }
 
@@ -244,49 +354,4 @@ label.required.ui-checkboxradio-label.ui-corner-all.ui-button.ui-widget.ui-check
 label.required.ui-checkboxradio-label.ui-corner-all.ui-button.ui-widget.ui-checkboxradio-radio-label span.ui-icon-background{
     border: #eeeeee;
     background-color: #eeeeee;
-}
-
-#item3 .form-control:focus {
-    border: 0px solid #ccc;
-}
-
-.ui-spinner {
-    display: block;
-    width: 100%;
-    height: 34px;
-    padding-left: 6.4px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.ui-spinner input{
-    height: 30px;
-}
-
-.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
-    border-top-right-radius: 4px;
-}
-
-.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
-    border-bottom-right-radius: 4px;
-}
-
-#ticket_customers p{
-    font-weight: 700;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.has-error .form-control{
-    border-color: #ccc !important;
-}
-
-.help-block{
-    color: #a94442 !important;
 }

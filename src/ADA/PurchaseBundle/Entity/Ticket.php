@@ -34,6 +34,14 @@ class Ticket
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
+     *
+     * @Assert\NotBlank(
+     *     message = "form.empty"
+     * )
+     * * @Assert\Date(
+     *     message = "form.date"
+     * )
+     * 
      */
     private $date;
 
@@ -41,6 +49,11 @@ class Ticket
      * @var bool
      *
      * @ORM\Column(name="type", type="boolean")
+     *
+     * * @Assert\NotNull(
+     *     message = "form.type"
+     * )
+     * 
      */
     private $type;
 
@@ -57,10 +70,14 @@ class Ticket
      *
      * @ORM\Column(name="email", type="string", length=255)
      *
+     * @Assert\NotBlank(
+     *     message = "form.empty"
+     * )
      * @Assert\Email(
-     *     message = "L'adresse email '{{ value }}' n'est pas une adresse email valide.",
+     *     message = "form.mail",
      *     checkMX = true
      * )
+     *
      */
     private $email;
 
