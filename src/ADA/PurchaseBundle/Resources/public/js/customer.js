@@ -1,8 +1,14 @@
 $(document).ready(function() {
-    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+    // On récupère la balise <div> qui contient l'attribut « data-prototype ».
     var $container = $('div#ticket_customers');
 
-    var index = $container.find('input[placeholder="Nom"]').length;
+    // Définition d'un compteur unique pour nommer les champs.
+    if(document.URL.indexOf("/en/") >= 0) {
+        var index = $container.find('input[placeholder="Name"]').length;
+    }
+    else {
+        var index = $container.find('input[placeholder="Nom"]').length;
+    }
 
     // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
     $('.ui-spinner-up').on('click',function(e) {
@@ -26,11 +32,8 @@ $(document).ready(function() {
 
     // La fonction qui ajoute un formulaire CustomerType
     function addCustomer($container) {
-        // Dans le contenu de l'attribut « data-prototype », on remplace :
-        // - le texte "__name__label__" qu'il contient par le label du champ
-        // - le texte "__name__" qu'il contient par le numéro du champ
-        var value = $('.spinner').spinner('value');
 
+        //Création d'une variable $billet à afficher suivant la lanque.
         if(document.URL.indexOf("/en/") >= 0) {
             $billet = 'Ticket';
         }
@@ -38,6 +41,11 @@ $(document).ready(function() {
             $billet = 'Billet';
         }
 
+        //Remplacement du texte "__name__label__" qu'il contient par le label du champ.
+        //Remplacement du texte "__name__" qu'il contient par le numéro du champ.
+        //Modification de la classe du label principal.
+        //Suppression  des labels Name, firstName et Country.
+        //Modification du label birthDate suivant la langue.
         var template = $container.attr('data-prototype')
             .replace(/<div class="form-group"><label class="control-label required">__name__label__/g, '<div class="form-group border"><label class="control-label required label1">__name__label__')
             .replace(/<label class="control-label required" for="ticket_customers___name___name">Name/g, '')
@@ -45,8 +53,7 @@ $(document).ready(function() {
             .replace(/<label class="control-label required" for="ticket_customers___name___country">Country/g, '')
             .replace(/<label class="control-label required">Birth date/g, '<label class="control-label required label2">Birth date')
             .replace(/<label class="control-label required">Date de naissance/g, '<label class="control-label required label2">Date de naissance')
-            // .replace(/<div class="form-group"><label class="control-label required">__name__label__/g, '<div class="form-horizontal"><label class="control-label required">__name__label__')
-            .replace(/__name__label__/g, $billet + ' n°' + (value))
+            .replace(/__name__label__/g, $billet + ' n°' + (index+1))
             .replace(/__name__/g, index);
 
         // On crée un objet jquery qui contient ce template
@@ -56,6 +63,10 @@ $(document).ready(function() {
         $container.append($prototype);
         index++;
 
+        //Récupération de la valeur du spinner
+        var value = $('.spinner').spinner('value');
+
+        //Desactive le bouton bas du spinner en cas de valeur superieur à 10.
         if(value==10){
             $container.append($prototype);
             $('.ui-spinner a.ui-spinner-up').attr('class', 'ui-button ui-widget ui-spinner-button ui-spinner-up ui-corner-tr ui-button-icon-only ui-state-disabled');

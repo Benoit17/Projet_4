@@ -27,20 +27,14 @@ class SessionManager
      */
     public function setSessionTicket(Ticket $ticket)
     {
+        // stocke un attribut pour la réutilisation durant une prochaine requête utilisateur.
         $this->session->set('tmpTicket', $ticket);
     }
 
-    /**
-     * @return mixed|null
-     */
     public function getSessionTicket()
     {
-        if ($this->session->get('tmpTicket')) {
-            $ticket = $this->session->get('tmpTicket');
-        } else {
-            return null;
-        }
-        return $ticket;
+        // récupère un attribut fixé par un autre contrôleur dans une autre requête
+        return $this->session->get('tmpTicket');
     }
 
     /**
@@ -50,6 +44,5 @@ class SessionManager
     {
         $this->em->persist($ticket);
         $this->em->flush();
-        $this->session->remove('tmpTicket');
     }
 }

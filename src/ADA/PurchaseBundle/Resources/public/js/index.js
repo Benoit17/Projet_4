@@ -5,20 +5,18 @@ $(document).ready(function(){
     else
         banner_text = 'En poursuivant sur ce site, vous acceptez l’utilisation de cookies.   <button class="btn btn-default btn-gradient btn-sm" id="accept-cookie">OK</button>';
         $("body").prepend('<div id="cookies-banner" class="navbar navbar-inverse text-center">' + banner_text + '</div>');
-        $("body").css({"top": $("#cookies-banner").outerHeight() + "px", "position": "relative"});
+        // $("body").css({"top": $("#cookies-banner").outerHeight() + "px", "position": "relative"});
 
         // si on accepte, le cookie avec la valeur 'set' est créée, sinon, la valeur 'not'
         $("#accept-cookie").click(function(){
             id_button     = $(this).attr("id");
             action_button = (id_button == "accept-cookie")? 'set' : 'not';
             $("#cookies-banner").slideUp(350).remove();
-            $("body").css({"top" : "0", "position" : ""});
         });
 
-        // si aucune action au bout de 10 secondes (implicite)
+        // si aucune action au bout de 10 secondes
         setTimeout(function(){
             $("#cookies-banner").slideUp(350).remove();
-            $("body").css({"top" : "0", "position" : ""});
         }, 10000); // 10 sec
 
 });

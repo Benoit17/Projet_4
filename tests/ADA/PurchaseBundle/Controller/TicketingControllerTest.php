@@ -19,7 +19,7 @@ class TicketingControllerTest extends WebTestCase
         // Assert that the response content contains a string
         $this->assertContains('Choisir une date', $client->getResponse()->getContent());
 
-        $form['ticket[date]'] = '25-08-2017';
+        $form['ticket[date]'] = '25-03-2018';
         $form['ticket[type]'] = 0;
         $form['ticket[number]'] = 1;
         $form['ticket[email][first]'] = 'dumas-chaumette@live.fr';

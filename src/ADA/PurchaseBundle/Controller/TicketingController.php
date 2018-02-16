@@ -29,8 +29,9 @@ class TicketingController extends Controller
             ->getDoctrine()
             ->getManager()
             ->getRepository('ADAPurchaseBundle:Ticket');
-
+        //Récupération de la date postée par l'utilsateur
         $date = $request->request->get('date');
+        //Appel à la fonction getTicketNumber du repository pour calculer le nombre de ticket déjà enregistré suivant la date choisie par l'utilisateur
         $number = $repository->getTicketNumber($date);
 
         return new Response($number);
@@ -58,7 +59,6 @@ class TicketingController extends Controller
      */
     public function summaryAction(Request $request)
     {
-
             $ticket = $this->get('ada_purchase.sessionManager')->getSessionTicket();
             $this->get('ada_purchase.priceManager')->getTotalPriceTicket($ticket);
 
@@ -72,7 +72,6 @@ class TicketingController extends Controller
                 if($validation !== true) {
                     return new Response($validation,500);
                 }
-                return $this->redirectToRoute('ada_purchase_summary');
             }
             return $this->render('ADAPurchaseBundle:Ticketing:summary.html.twig', array(
                 'ticket' => $ticket,

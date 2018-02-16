@@ -12,6 +12,7 @@ use Doctrine\ORM\QueryBuilder;
  */
 class TicketRepository extends EntityRepository
 {
+    //Récupère la somme de ticket déjà enregistrés suivant une date
     public function getTicketNumber($date)
     {
         $qb = $this->createQueryBuilder('t')
