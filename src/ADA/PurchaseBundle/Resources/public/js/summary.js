@@ -12,11 +12,11 @@ $(document).ready(function () {
     //Ajoute la classe z aux classes du datepicker pour que le z-index soit au-dessus de celui de la modale
     $('#ui-datepicker-div').attr('class', 'ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all z');
 
-    //Ajout d'une bordure au premier client
-    $('.checkbox').attr('class', 'checkbox border');
+    // //Ajout d'une bordure au premier client
+    // $('.checkbox').attr('class', 'checkbox border');
 
     //Ajout d'un margin-bottom de 15px au label de checkbox
-    $('.checkbox label').attr('style', 'margin-bottom: 15px;');
+    $('.checkbox label').attr('style', 'margin-bottom: 15px; padding-bottom: 10px;');
 
     //Enlève la validation des erreurs par le navigateur
     $('form').attr('novalidate', 'novalidate');

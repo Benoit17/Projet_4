@@ -63,6 +63,9 @@ $(document).ready(function () {
 
     //Empèche l'affichage des labels par défauts en cas de rechargement de la page suite à des erreurs de validation par exemple
     $('div.form-group label').attr('style', 'display: none;');
+    $('div.checkbox label').attr('style', 'display: block; padding-bottom: 10px;');
+    $('div.checkbox label').attr('class', 'border');
+
 
     //Ouvre les onglets correspondant en cas d'erreur
     $(document).ready(function () {
