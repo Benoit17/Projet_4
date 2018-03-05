@@ -3,13 +3,20 @@
 namespace ADA\PurchaseBundle\BarCode;
 
 use CodeItNow\BarcodeBundle\Utils\BarcodeGenerator;
+use ADA\PurchaseBundle\Session\SessionManager;
 
 class BarCodeManager
 {
+    private $sessionManager;
+
+    public function __construct(SessionManager $sessionManager)
+    {
+        $this->sessionManager = $sessionManager;
+    }
 
     public function getBarCode()
     {
-        $text = uniqid();
+        $text = $this->sessionManager->getSessionTicket()->getBookingCode();
         $barcode = new BarcodeGenerator();
         $barcode->setText($text);
         $barcode->setType(BarcodeGenerator::Code128);
@@ -19,7 +26,7 @@ class BarCodeManager
         $code = $barcode->generate();
 
         echo '<img src="data:image/png;base64,'.$code.'" />';
-        
+
     }
 
 }

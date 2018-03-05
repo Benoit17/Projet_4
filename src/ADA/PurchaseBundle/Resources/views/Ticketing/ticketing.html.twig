@@ -48,8 +48,12 @@
             <div id="item3" class="panel-collapse collapse">
                 <section class="panel-body text-center">
                     <div class="section">
-                        {{ form_widget(form.number) }}
-                        {{ form_errors(form.number)}}
+                        <div>
+                            {{ form_widget(form.number) }}
+                        </div>
+                        <div id="test2" style="text-align: center;">
+                            {{ form_errors(form.number)}}
+                        </div>
                     </div>
                 </section>
             </div>

@@ -16,23 +16,22 @@ class TicketingControllerTest extends WebTestCase
             200,
             $client->getResponse()->getStatusCode()
         );
-        // Assert that the response content contains a string
-        $this->assertContains('Choisir une date', $client->getResponse()->getContent());
 
-        $form['ticket[date]'] = '25-03-2018';
+        // Assert that the response content contains a string
+        $this->assertContains('Bienvenue', $client->getResponse()->getContent());
+
+        // Remplissage du formulaire
+        $form = $crawler->selectButton('Valider')->form();
+        $form['ticket[date]'] = '26-03-2018';
         $form['ticket[type]'] = 0;
         $form['ticket[number]'] = 1;
         $form['ticket[email][first]'] = 'dumas-chaumette@live.fr';
         $form['ticket[email][second]'] = 'dumas-chaumette@live.fr';
-        $form['ticket[customers][0][name]'] = 'Dumas';
-        $form['ticket[customers][0][firstName]'] = 'Benoit';
-        $form['ticket[customers][0][country]'] = 'France';
-        $form['ticket[customers][0][birthDate][day]'] = '19-03-1989';
-        $form['ticket[customers][0][reduce]'] = true;
-        $form = $crawler->selectButton('Valider')->form();
-        $client->submit($form);
+        $crawler = $client->submit($form);
 
-        // Assert that the response is a redirect to /fr/ticketing/summary
+        //Assert that the response is a redirect to /fr/ticketing/summary
         $this->assertTrue($client->getResponse()->isRedirect('/fr/ticketing/summary'));
+        
     }
+
 }

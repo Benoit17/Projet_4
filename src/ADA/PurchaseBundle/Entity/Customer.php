@@ -100,6 +100,13 @@ class Customer
     private $reduce;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="price", type="integer", nullable=true)
+     */
+    private $price;
+
+    /**
      * Get id
      *
      * @return int
@@ -229,34 +236,28 @@ class Customer
         return $this->reduce;
     }
 
-    public function getAge()
+    /**
+     * Set price
+     *
+     * @param integer $price
+     *
+     * @return Ticket
+     */
+    public function setPrice($price)
     {
-        $age = $this->getBirthDate()->diff(new \DateTime());
+        $this->price = $price;
 
-        return $age->y;
+        return $this;
     }
 
+    /**
+     * Get price
+     *
+     * @return int
+     */
     public function getPrice()
     {
-        if ($this->getReduce() === true)
-        {
-            return $price = 10;
-        }
-        elseif ($this->getAge() < 4)
-        {
-            return $price = 0;
-        }
-        elseif ($this->getAge() >= 4 AND $this->getAge() < 12)
-        {
-            return $price = 8;
-        }
-        elseif ($this->getAge() >= 12 AND $this->getAge() < 60)
-        {
-            return $price = 16;
-        }
-         elseif ($this->getAge() > 60)
-        {
-            return $price = 12;
-        }
+        return $this->price;
     }
+    
 }

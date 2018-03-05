@@ -7,3 +7,4 @@ form:
     nameNumber : Votre nom ne doit pas contenir de nombre.
     firstnameMin : Votre prénom doit contenir au moins {{ limit }} caractères.
     firstnameNumber : Votre prénom ne doit pas contenir de nombre.
+    number : Le nombre de ticket doit être compris entre 1 et 10.

@@ -71,7 +71,7 @@ $(document).ready(function () {
     $(document).ready(function () {
         $('div#item1 span').attr('id', '1');
         $('div#test span').attr('id', '2');
-        $('div#item3 span').attr('id', '3');
+        $('div#test2 span').attr('id', '3');
         $('div#item4 span').attr('id', '4');
         $('div#item5 span').attr('id', '5');
         $('div#item6 span').attr('id', '6');

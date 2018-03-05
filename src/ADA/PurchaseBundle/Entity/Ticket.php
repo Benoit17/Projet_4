@@ -50,7 +50,7 @@ class Ticket
      *
      * @ORM\Column(name="type", type="boolean")
      *
-     * * @Assert\NotNull(
+     * @Assert\NotNull(
      *     message = "form.type"
      * )
      * 
@@ -61,6 +61,16 @@ class Ticket
      * @var int
      *
      * @ORM\Column(name="number", type="integer")
+     *
+     * @Assert\NotBlank(
+     *     message = "form.empty"
+     * )
+     * @Assert\Range(
+     *     min = 1,
+     *     max = 10,
+     *     minMessage = "form.number",
+     *     maxMessage = "form.number"
+     * )
      *
      */
     private $number;
@@ -87,6 +97,13 @@ class Ticket
      * @ORM\Column(name="total_price", type="decimal", precision=7, scale=2, nullable=true)
      */
     private $totalPrice;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="booking_code", type="string", nullable=true)
+     */
+    private $bookingCode;
 
     /**
      * Get id
@@ -263,5 +280,29 @@ class Ticket
     public function getTotalPrice()
     {
         return $this->totalPrice;
+    }
+
+    /**
+     * Set bookingCode
+     *
+     * @param string $bookingCode
+     *
+     * @return Ticket
+     */
+    public function setBookingCode($bookingCode)
+    {
+        $this->bookingCode = $bookingCode;
+
+        return $this;
+    }
+
+    /**
+     * Get bookingCode
+     *
+     * @return string
+     */
+    public function getBookingCode()
+    {
+        return $this->bookingCode;
     }
 }

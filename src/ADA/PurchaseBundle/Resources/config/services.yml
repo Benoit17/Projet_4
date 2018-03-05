@@ -1,17 +1,17 @@
+parameters:
+    ada_purchase.reduce:  10
+    ada_purchase.babyPrice: 0
+    ada_purchase.ChildPrice: 8
+    ada_purchase.SeniorPrice: 12
+    ada_purchase.NormalPrice: 16
+
 services:
-    ada_purchase.email.application_mailer:
-        class: ADA\PurchaseBundle\Email\ApplicationMailer
+    ada_purchase.sendMail:
+        class: ADA\PurchaseBundle\Email\SendMail
         arguments:
             - "@mailer"
             - "@templating"
             - "@ada_purchase.barCodeManager"
-
-    ada_purchase.doctrine_listener.application_creation:
-        class: ADA\PurchaseBundle\DoctrineListener\ApplicationCreationListener
-        arguments:
-            - "@ada_purchase.email.application_mailer"
-        tags:
-            - { name: doctrine.event_listener, event: postPersist }
 
     ada_purchase.sessionManager:
         class: ADA\PurchaseBundle\Session\SessionManager
@@ -19,20 +19,32 @@ services:
             - "@doctrine.orm.entity_manager"
             - "@session"
 
+    ada_purchase.getAge:
+            class: ADA\PurchaseBundle\Age\GetAge
+
     ada_purchase.priceManager:
         class: ADA\PurchaseBundle\Price\PriceManager
+        arguments:
+            - '@service_container'
+            - ['%ada_purchase.reduce%']
+            - ['%ada_purchase.babyPrice%']
+            - ['%ada_purchase.ChildPrice%']
+            - ['%ada_purchase.SeniorPrice%']
+            - ['%ada_purchase.normalPrice%']
 
     ada_purchase.barCodeManager:
-            class: ADA\PurchaseBundle\BarCode\BarCodeManager
+        class: ADA\PurchaseBundle\BarCode\BarCodeManager
+        arguments:
+            - "@ada_purchase.sessionManager"
 
     ada_purchase.barCodeManager_extension:
-                class: ADA\PurchaseBundle\Twig\BarCodeManagerExtension
-                arguments:
-                    - "@ada_purchase.barCodeManager"
-                tags:
-                    - { name: twig.extension}
+        class: ADA\PurchaseBundle\Twig\BarCodeManagerExtension
+        arguments:
+            - "@ada_purchase.barCodeManager"
+        tags:
+            - { name: twig.extension}
 
     ada_purchase.editManager:
-            class: ADA\PurchaseBundle\Edit\EditManager
-            arguments:
-                - "@validator"
+        class: ADA\PurchaseBundle\Edit\EditManager
+        arguments:
+            - "@validator"

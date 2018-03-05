@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use ADA\PurchaseBundle\Entity\Ticket;
 
 
-class ApplicationMailer
+class SendMail
 {
     /**
      * @var \Swift_Mailer
@@ -20,7 +20,7 @@ class ApplicationMailer
         $this->templating = $templating;
     }
 
-    public function sendNewNotification(Ticket $ticket)
+    public function sendMail(Ticket $ticket)
     {
         if(strpos($_SERVER['REQUEST_URI'], 'en') !== false) {
             $message = (new \Swift_Message('Ticket'))

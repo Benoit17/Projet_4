@@ -96,9 +96,14 @@ class TicketingController extends Controller
      */
     public function finalAction()
     {
-        $ticket = $this->get('ada_purchase.sessionManager')->getSessionTicket();
+        $bookingCode = uniqid();
+        $ticket = $this
+            ->get('ada_purchase.sessionManager')
+            ->getSessionTicket()
+            ->setBookingCode($bookingCode);
         if ($ticket === null) { return $this->redirectToRoute('ada_purchase_index'); }
         $this->get('ada_purchase.sessionManager')->saveTicket($ticket);
+        $this->get('ada_purchase.sendMail')->sendMail($ticket);
 
         return $this->render('ADAPurchaseBundle:Ticketing:final.html.twig');
     }
